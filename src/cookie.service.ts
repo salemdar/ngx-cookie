@@ -1,10 +1,29 @@
-import {Injectable, Optional} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {CookieOptions} from './base-cookie-options';
-import {CookieOptionsArgs} from './cookie-options-args.model';
+import { CookieOptionsProvider } from './cookie-options-provider';
+import { CookieOptions } from './cookie-options.model';
+import { isBlank, isString, mergeOptions, safeDecodeURIComponent, safeJsonParse } from './utils';
+
+declare interface Document {
+  cookie: string;
+}
+declare const document: Document;
+
+export interface ICookieService {
+  get(key: string): string;
+  getObject(key: string): Object;
+  getAll(): Object;
+  put(key: string, value: string, options?: CookieOptions): void;
+  putObject(key: string, value: Object, options?: CookieOptions): void;
+  remove(key: string, options?: CookieOptions): void;
+  removeAll(): void;
+}
 
 @Injectable()
 export class CookieService implements ICookieService {
+
+  protected options: CookieOptions;
+
   protected get cookieString(): string {
     return document.cookie || '';
   }
@@ -13,7 +32,9 @@ export class CookieService implements ICookieService {
     document.cookie = val;
   }
 
-  constructor(@Optional() private _defaultOptions?: CookieOptions) {}
+  constructor(private _optionsProvider: CookieOptionsProvider) {
+    this.options = this._optionsProvider.options;
+  }
 
   /**
    * @name CookieService#get
@@ -39,7 +60,7 @@ export class CookieService implements ICookieService {
    */
   getObject(key: string): Object {
     let value = this.get(key);
-    return value ? JSON.parse(value) : value;
+    return value ? safeJsonParse(value) : value;
   }
 
   /**
@@ -62,9 +83,9 @@ export class CookieService implements ICookieService {
    *
    * @param {string} key Id for the `value`.
    * @param {string} value Raw value to be stored.
-   * @param {CookieOptionsArgs} options (Optional) Options object.
+   * @param {CookieOptions} options (Optional) Options object.
    */
-  put(key: string, value: string, options?: CookieOptionsArgs) {
+  put(key: string, value: string, options?: CookieOptions) {
     this._cookieWriter()(key, value, options);
   }
 
@@ -76,9 +97,9 @@ export class CookieService implements ICookieService {
    *
    * @param {string} key Id for the `value`.
    * @param {Object} value Value to be stored.
-   * @param {CookieOptionsArgs} options (Optional) Options object.
+   * @param {CookieOptions} options (Optional) Options object.
    */
-  putObject(key: string, value: Object, options?: CookieOptionsArgs) {
+  putObject(key: string, value: Object, options?: CookieOptions) {
     this.put(key, JSON.stringify(value), options);
   }
 
@@ -89,9 +110,9 @@ export class CookieService implements ICookieService {
    * Remove given cookie.
    *
    * @param {string} key Id of the key-value pair to delete.
-   * @param {CookieOptionsArgs} options (Optional) Options object.
+   * @param {CookieOptions} options (Optional) Options object.
    */
-  remove(key: string, options?: CookieOptionsArgs): void {
+  remove(key: string, options?: CookieOptions): void {
     this._cookieWriter()(key, undefined, options);
   }
 
@@ -111,8 +132,6 @@ export class CookieService implements ICookieService {
   private _cookieReader(): Object {
     let lastCookies = {};
     let lastCookieString = '';
-    let that = this;
-
     let cookieArray: string[], cookie: string, i: number, index: number, name: string;
     let currentCookieString = this.cookieString;
     if (currentCookieString !== lastCookieString) {
@@ -123,12 +142,12 @@ export class CookieService implements ICookieService {
         cookie = cookieArray[i];
         index = cookie.indexOf('=');
         if (index > 0) {  // ignore nameless cookies
-          name = that._safeDecodeURIComponent(cookie.substring(0, index));
+          name = safeDecodeURIComponent(cookie.substring(0, index));
           // the first value that is seen for a cookie is the most
           // specific one.  values for the same cookie name that
           // follow are for less specific paths.
-          if (this.isBlank((<any>lastCookies)[name])) {
-            (<any>lastCookies)[name] = that._safeDecodeURIComponent(cookie.substring(index + 1));
+          if (isBlank((<any>lastCookies)[name])) {
+            (<any>lastCookies)[name] = safeDecodeURIComponent(cookie.substring(index + 1));
           }
         }
       }
@@ -139,31 +158,19 @@ export class CookieService implements ICookieService {
   private _cookieWriter() {
     let that = this;
 
-    return function(name: string, value: string, options?: CookieOptionsArgs) {
+    return function (name: string, value: string, options?: CookieOptions) {
       that.cookieString = that._buildCookieString(name, value, options);
     };
   }
 
-  private _safeDecodeURIComponent(str: string) {
-    try {
-      return decodeURIComponent(str);
-    } catch (e) {
-      return str;
-    }
-  }
-
-  private _buildCookieString(name: string, value: string, options?: CookieOptionsArgs): string {
-    let cookiePath = '/';
-    let path: string, expires: any;
-    let defaultOpts =
-        this._defaultOptions || new CookieOptions(<CookieOptionsArgs>{path: cookiePath});
-    let opts: CookieOptions = this._mergeOptions(defaultOpts, options);
-    expires = opts.expires;
-    if (this.isBlank(value)) {
+  private _buildCookieString(name: string, value: string, options?: CookieOptions): string {
+    let opts: CookieOptions = mergeOptions(this.options, options);
+    let expires: any = opts.expires;
+    if (isBlank(value)) {
       expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
       value = '';
     }
-    if (this.isString(expires)) {
+    if (isString(expires)) {
       expires = new Date(expires);
     }
 
@@ -185,34 +192,4 @@ export class CookieService implements ICookieService {
     return str;
   }
 
-  private _mergeOptions(defaultOpts: CookieOptions, providedOpts?: CookieOptionsArgs):
-      CookieOptions {
-    let newOpts = defaultOpts;
-    if (this.isPresent(providedOpts)) {
-      return newOpts.merge(new CookieOptions(providedOpts));
-    }
-    return newOpts;
-  }
-
-  private isBlank(obj: any): boolean {
-    return obj === undefined || obj === null;
-  }
-
-  private isPresent(obj: any): boolean {
-    return obj !== undefined && obj !== null;
-  }
-
-  private isString(obj: any): obj is string {
-    return typeof obj === 'string';
-  }
-}
-
-export interface ICookieService {
-  get(key: string): string;
-  getObject(key: string): Object;
-  getAll(): Object;
-  put(key: string, value: string, options?: CookieOptionsArgs): void;
-  putObject(key: string, value: Object, options?: CookieOptionsArgs): void;
-  remove(key: string, options?: CookieOptionsArgs): void;
-  removeAll(): void;
 }
