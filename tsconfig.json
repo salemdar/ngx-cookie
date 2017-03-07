@@ -19,6 +19,7 @@
     "index.ts",
     "./src/cookie.service.ts",
     "./src/cookie-backend.service.ts",
+    "./src/cookie-options.model.ts",
     "tests/cookie.service.spec.ts"
   ],
   "exclude": [
