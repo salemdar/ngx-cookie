@@ -5,9 +5,12 @@ import { CookieService } from './src/cookie.service';
 import { CookieOptions } from './src/cookie-options.model';
 import { cookieServiceFactory } from './src/cookie.factory';
 
-export * from "./src/cookie.service";
-export * from "./src/cookie-backend.service";
-export * from "./src/cookie-options.model";
+export * from './src/cookie.service';
+export * from './src/cookie-backend.service';
+export * from './src/cookie-options.model';
+export * from './src/cookie-options-provider';
+export * from './src/cookie.factory';
+export * from './src/utils';
 
 @NgModule({
   providers: [CookieOptionsProvider]

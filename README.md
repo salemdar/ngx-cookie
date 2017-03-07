@@ -30,6 +30,8 @@ You can install this package locally with npm.
 ```bash
 # To get the latest stable version and update package.json file:
 npm install ngx-cookie --save
+# or
+# yarn add ngx-cookie
 ```
 
 After installing the library, it should be included in the SystemJS configurations.
@@ -64,7 +66,7 @@ After installing the library, it should be included in the SystemJS configuratio
       // other libraries
       'rxjs':                       'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-      'ngx-cookie':                 'npm:ngx-cookie'
+      'ngx-cookie':                 'npm:ngx-cookie/bundles/ngx-cookie.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -78,10 +80,6 @@ After installing the library, it should be included in the SystemJS configuratio
       'angular2-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'
-      },
-      'ngx-cookie': {
-        main: './index.js',
-        defaultExtension: 'js'
       }
     }
   });
@@ -90,8 +88,8 @@ After installing the library, it should be included in the SystemJS configuratio
 
 ### <a name="usage"></a> Usage
 
-**CookieService** class is an injectable service with angular `@Injectable()` decorator. Therefore, it needs to be registered in the providers array (encouraged way).
-Then, it will be available in the constructor of the component class.
+`CookieModule` should be registered in the `AppModule` with `forRoot()` static method and with `forChild()` in the child modules.
+These methods accepts `CookieOptions` objects as well. Leave it blank for the defaults.
 
 ```typescript
 import { NgModule }      from '@angular/core';
@@ -118,9 +116,9 @@ import { CookieService } from 'ngx-cookie';
     template: '<h1>My Angular2 App with Cookies</h1>'
 })
 
-export class AppComponent {
+export class AppComponent { 
   constructor(private _cookieService:CookieService){}
-
+  
   getCookie(key: string){
     return this._cookieService.get(key);
   }
@@ -168,7 +166,7 @@ Just edit the `systemjs.config.js` file and add the `ngx-cookie` there.
       // other libraries
       'rxjs':                       'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-      'ngx-cookie':            'npm:ngx-cookie/bundles/ngx-cookie.umd.js'
+      'ngx-cookie':                 'npm:ngx-cookie/bundles/ngx-cookie.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -267,9 +265,9 @@ Sets a value for given cookie key.
 /**
  * @param {string} key Id for the `value`.
  * @param {string} value Raw value to be stored.
- * @param {CookieOptionsArgs} options (Optional) Options object.
+ * @param {CookieOptions} options (Optional) Options object.
  */
-put(key: string, value: string, options?: CookieOptionsArgs): void;
+put(key: string, value: string, options?: CookieOptions): void;
 ```
 
 ### <a name="putobject"></a> putObject()
@@ -279,9 +277,9 @@ Serializes and sets a value for given cookie key.
 /**
  * @param {string} key Id for the `value`.
  * @param {Object} value Value to be stored.
- * @param {CookieOptionsArgs} options (Optional) Options object.
+ * @param {CookieOptions} options (Optional) Options object.
  */
-putObject(key: string, value: Object, options?: CookieOptionsArgs): void;
+putObject(key: string, value: Object, options?: CookieOptions): void;
 ```
 
 ### <a name="remove"></a> remove()
@@ -290,9 +288,9 @@ Remove given cookie.
 ```typescript
 /**
  * @param {string} key Id of the key-value pair to delete.
- * @param {CookieOptionsArgs} options (Optional) Options object.
+ * @param {CookieOptions} options (Optional) Options object.
  */
-remove(key: string, options?: CookieOptionsArgs): void;
+remove(key: string, options?: CookieOptions): void;
 ```
 
 ### <a name="removeall"></a> removeAll()
@@ -306,7 +304,7 @@ removeAll(): void;
 
 ## <a name="options"></a> Options
 
-Options object should be a type of `CookieOptionsArgs` interface. The object may have following properties:
+Options object should be a type of `CookieOptions` interface. The object may have following properties:
 
 - **path** - {string} - The cookie will be available only for this path and its sub-paths. By default, this is the URL that appears in your `<base>` tag.
 - **domain** - {string} - The cookie will be available only for this domain and its sub-domains. For security reasons the user agent will not accept the cookie if the current domain is not a sub-domain of this domain or equal to it.
