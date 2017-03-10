@@ -10,7 +10,6 @@
   - [Examples](#examples)
     - [angular-quickstart](#quickstart)
     - [angular-seed](#seed)
-    - [angular-cli](#cli)
 - [CookieService](#cookieservice)
   - [get()](#get)
   - [getObject()](#getobject)
@@ -204,22 +203,6 @@ this.addPackagesBundles(additionalPackages);
 ```
 
 Do not forget to inject the `CookieModule` in the module `AppModule` and `SharedModule`.
-
-#### <a name="cli"></a> Angular-cli
-
-A CLI tool for Angular2.
-_(Link: [https://github.com/angular/angular-cli](https://github.com/angular/angular-cli))_
-
-Edit the `.angular-cli.json` and add `ngx-cookie` to the `scripts`.
-
-```javascript
-// ...
-"scripts": [
-  "../node_modules/ngx-cookie/bundles/ngx-cookie.umd.js",
-  // ...
-]
-// ...
-```
 
 
 ## <a name="cookieservice"></a> CookieService
