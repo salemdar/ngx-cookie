@@ -30,7 +30,7 @@ You can install this package locally with npm.
 # To get the latest stable version and update package.json file:
 npm install ngx-cookie --save
 # or
-# yarn add ngx-cookie
+yarn add ngx-cookie
 ```
 
 After installing the library, it should be included in the SystemJS configurations.
