@@ -15,10 +15,14 @@
  *   or a Date object indicating the exact date/time this cookie will expire.
  * - **secure** - {boolean} - If `true`, then the cookie will only be available through a
  *   secured connection.
+ * - **httpOnly** - {boolean} - If `true`, then the cookie will be set with the `HttpOnly`
+ *   flag, and will only be accessible from the remote server. Helps to prevent against
+ *   XSS attacks.
  */
 export interface CookieOptions {
   path?: string;
   domain?: string;
   expires?: string|Date;
   secure?: boolean;
+  httpOnly?: boolean;
 }

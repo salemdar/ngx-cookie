@@ -179,6 +179,7 @@ export class CookieService implements ICookieService {
     str += opts.domain ? ';domain=' + opts.domain : '';
     str += expires ? ';expires=' + expires.toUTCString() : '';
     str += opts.secure ? ';secure' : '';
+    str += opts.httpOnly ? '; HttpOnly' : '';
 
     // per http://www.ietf.org/rfc/rfc2109.txt browser must allow at minimum:
     // - 300 cookies
