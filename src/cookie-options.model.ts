@@ -15,10 +15,13 @@
  *   or a Date object indicating the exact date/time this cookie will expire.
  * - **secure** - {boolean} - If `true`, then the cookie will only be available through a
  *   secured connection.
+ * - **storeUnencoded** - {boolean} - If `true`, then the cookie value will not be encoded and 
+ *   will be stored as provided. 
  */
 export interface CookieOptions {
   path?: string;
   domain?: string;
   expires?: string|Date;
   secure?: boolean;
+  storeUnencoded?: boolean;
 }

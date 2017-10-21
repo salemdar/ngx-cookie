@@ -137,4 +137,15 @@ describe('CookieService', () => {
     expect(cookieService.get(key)).toBe(value);
   });
 
+  it('should store unencoded cookie values if requested', () => {
+    let key = 'testCookieKey';
+    let value = 'testCookieValue=unencoded';
+    let opts: CookieOptions = {
+      storeUnencoded: true
+    };
+    cookieService.put(key, value, opts);
+    expect(document.cookie).toBe(`${key}=${value}`);
+    expect(cookieService.get(key)).toBe(value);
+  });
+
 });
