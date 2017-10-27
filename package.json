@@ -1,5 +1,5 @@
 {
-  "name": "ngx-cookie",
+  "name": "@billdwhite/ngx-cookie",
   "version": "0.0.0-development",
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/salemdar/ngx-cookie.git"
+    "url": "git+https://github.com/salemdar/ngx-cookie.git"
   },
   "keywords": [
     "angular2",
@@ -42,16 +42,16 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "peerDependencies": {
-    "@angular/core": ">=2.0.0 || >=4.0.0-beta.0"
+    "@angular/core": ">=4.4.0"
   },
   "devDependencies": {
-    "@angular/common": "2.4.9",
-    "@angular/compiler": "2.4.9",
-    "@angular/compiler-cli": "2.4.9",
-    "@angular/core": "2.4.9",
-    "@angular/platform-browser": "2.4.9",
-    "@angular/platform-browser-dynamic": "2.4.9",
-    "@angular/platform-server": "2.4.9",
+    "@angular/common": "4.3.0",
+    "@angular/compiler": "4.3.0",
+    "@angular/compiler-cli": "4.3.0",
+    "@angular/core": "4.3.0",
+    "@angular/platform-browser": "4.3.0",
+    "@angular/platform-browser-dynamic": "4.3.0",
+    "@angular/platform-server": "4.3.0",
     "@types/hammerjs": "2.0.34",
     "@types/jasmine": "2.5.43",
     "@types/node": "7.0.5",
@@ -88,5 +88,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {}
 }
