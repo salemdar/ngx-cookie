@@ -1,5 +1,5 @@
 {
-  "name": "ngx-cookie",
+  "name": "@billdwhite/ngx-cookie",
   "version": "0.0.0-development",
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/salemdar/ngx-cookie.git"
+    "url": "git+https://github.com/salemdar/ngx-cookie.git"
   },
   "keywords": [
     "angular2",
@@ -88,5 +88,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {}
 }
