@@ -11,8 +11,7 @@
     "prepublish": "ngc && npm run build",
     "build": "webpack",
     "commit": "npm run prepublish && npm test && git-cz",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "postinstall": "npm run build"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
