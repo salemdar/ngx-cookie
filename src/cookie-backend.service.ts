@@ -1,15 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 import { CookieService } from './cookie.service';
+import { CookieOptionsProvider } from './cookie-options-provider';
 
 @Injectable()
 export class CookieBackendService extends CookieService {
+
+  constructor(@Inject('REQUEST') private request: any,
+              @Inject('RESPONSE') private response: any,
+              _optionsProvider: CookieOptionsProvider) {
+    super(_optionsProvider);
+  }
+
   protected get cookieString(): string {
-    return (<any>global).Zone.current.get('req').headers.cookie || '';
+    return this.request.headers.cookie || '';
   }
 
   protected set cookieString(val: string) {
-    (<any>global).Zone.current.get('req').headers.cookie = val;
-    (<any>global).Zone.current.get('res').headers.cookie = val;
+    this.request.headers.cookie = val;
+    this.response.headers.cookie = val;
   }
 }
