@@ -122,6 +122,33 @@ describe('CookieService', () => {
     cookieService.removeAll();
     expect(cookieService.getAll()).toEqual({});
   });
+  
+  it('should remove all cookies when passing options', () => {
+    let optionCookies = {
+      path: '/',
+      domain: 'localhost',
+      expires: new Date(),
+      secure: false,
+    };
+    let simpleCookies = [
+      {key: 'key1', value: 'value1', option: optionCookies}, 
+      {key: 'key2', value: 'value2', option: optionCookies},
+      {key: 'key3', value: 'value3', option: optionCookies}
+    ];
+    let objectCookies = [
+      {key: 'keyO1', value: {keyO1_1: 'valueO1_1', keyO1_2: 'valueO1_2'}, option: optionCookies},
+      {key: 'keyO2', value: {keyO2_1: 'valueO2_1', keyO2_2: 'valueO2_2'}, option: optionCookies},
+      {key: 'keyO3', value: {keyO3_1: 'valueO3_1', keyO3_2: 'valueO3_2'}, option: optionCookies}
+    ];
+    simpleCookies.forEach(c => {
+      cookieService.put(c.key, c.value, c.option);
+    });
+    objectCookies.forEach(c => {
+      cookieService.putObject(c.key, c.value, c.option);
+    });
+    cookieService.removeAll(optionCookies);
+    expect(cookieService.getAll()).toEqual({});
+  });
 
   it('should return undefined for nonexisting cookies', () => {
     expect(cookieService.get('nonexistingCookie')).toBeUndefined();

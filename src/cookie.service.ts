@@ -16,7 +16,7 @@ export interface ICookieService {
   put(key: string, value: string, options?: CookieOptions): void;
   putObject(key: string, value: Object, options?: CookieOptions): void;
   remove(key: string, options?: CookieOptions): void;
-  removeAll(): void;
+  removeAll(options?: CookieOptions): void;
 }
 
 @Injectable()
@@ -122,10 +122,10 @@ export class CookieService implements ICookieService {
    * @description
    * Remove all cookies.
    */
-  removeAll(): void {
+  removeAll(options?: CookieOptions): void {
     let cookies = this.getAll();
     Object.keys(cookies).forEach(key => {
-      this.remove(key);
+      this.remove(key, options);
     });
   }
 
