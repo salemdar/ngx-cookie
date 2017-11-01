@@ -173,8 +173,8 @@ export class CookieService implements ICookieService {
     if (isString(expires)) {
       expires = new Date(expires);
     }
-
-    let str = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+    let cookieValue = opts.storeUnencoded ? value : encodeURIComponent(value);
+    let str = encodeURIComponent(name) + '=' + cookieValue;
     str += opts.path ? ';path=' + opts.path : '';
     str += opts.domain ? ';domain=' + opts.domain : '';
     str += expires ? ';expires=' + expires.toUTCString() : '';
