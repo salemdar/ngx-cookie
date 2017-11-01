@@ -294,3 +294,5 @@ Options object should be a type of `CookieOptions` interface. The object may hav
 - **expires** - {string|Date} - String of the form "Wdy, DD Mon YYYY HH:MM:SS GMT" or a Date object indicating the exact date/time this cookie will expire.
 - **secure** - {boolean} - If `true`, then the cookie will only be available through a secured connection.
 - **httpOnly** - {boolean} - If `true`, then the cookie will be set with the `HttpOnly` flag, and will only be accessible from the remote server. Helps to prevent against XSS attacks.
+- **storeUnencoded** - {boolean} - If `true`, then the cookie value will not be encoded and will be stored as provided. 
+
