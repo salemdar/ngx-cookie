@@ -1,6 +1,6 @@
 {
   "name": "ngx-cookie",
-  "version": "0.0.0-development",
+  "version": "2.0.0",
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "scripts": {
     "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.metadata.json src/**/*.js tests/**/*.d.ts tests/**/*.metadata.json tests/**/*.js index.d.ts index.metadata.json index.js",
@@ -9,8 +9,7 @@
     "test-watch": "karma start --singleRun=false --autoWatch=true",
     "prepublish": "ngc && npm run build",
     "build": "webpack",
-    "commit": "npm run prepublish && npm test && git-cz",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "commit": "npm run prepublish && npm test && git-cz"
   },
   "repository": {
     "type": "git",
@@ -42,23 +41,22 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "peerDependencies": {
-    "@angular/core": ">=2.0.0 || >=4.0.0"
+    "@angular/core": ">=4.0.0 || >=5.0.0"
   },
   "devDependencies": {
-    "@angular/common": "4.4.6",
-    "@angular/compiler": "4.4.6",
-    "@angular/compiler-cli": "4.4.6",
-    "@angular/core": "4.4.6",
-    "@angular/platform-browser": "4.4.6",
-    "@angular/platform-browser-dynamic": "4.4.6",
-    "@angular/platform-server": "4.4.6",
+    "@angular/common": "^5.0.1",
+    "@angular/compiler": "^5.0.1",
+    "@angular/compiler-cli": "^5.0.1",
+    "@angular/core": "^5.0.1",
+    "@angular/platform-browser": "^5.0.1",
+    "@angular/platform-browser-dynamic": "^5.0.1",
+    "@angular/platform-server": "^5.0.1",
     "@types/hammerjs": "2.0.35",
-    "@types/jasmine": "2.6.2",
-    "@types/node": "8.0.47",
+    "@types/jasmine": "2.6.3",
+    "@types/node": "8.0.51",
     "awesome-typescript-loader": "3.3.0",
     "clean-webpack-plugin": "0.1.17",
-    "codelyzer": "3.2.2",
-    "commitizen": "2.9.6",
+    "codelyzer": "^4.0.1",
     "core-js": "2.5.1",
     "cz-conventional-changelog": "2.1.0",
     "istanbul-instrumenter-loader": "3.0.0",
@@ -70,12 +68,11 @@
     "karma-mocha-reporter": "2.2.5",
     "karma-remap-coverage": "0.1.4",
     "karma-sourcemap-loader": "0.3.7",
-    "karma-webpack": "2.0.5",
+    "karma-webpack": "2.0.6",
     "loader-utils": "1.1.0",
     "reflect-metadata": "0.1.10",
     "rimraf": "2.6.2",
     "rxjs": "5.5.2",
-    "semantic-release": "^8.2.0",
     "source-map-loader": "0.2.3",
     "ts-helpers": "1.1.2",
     "tslint": "5.8.0",
@@ -83,10 +80,5 @@
     "typescript": "2.6.1",
     "webpack": "3.8.1",
     "zone.js": "0.8.18"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
