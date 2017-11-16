@@ -4,10 +4,10 @@
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "scripts": {
     "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.metadata.json src/**/*.js tests/**/*.d.ts tests/**/*.metadata.json tests/**/*.js index.d.ts index.metadata.json index.js",
-    "clean-build": "npm run clean && npm run build && npm test && npm run prepublish",
+    "clean-build": "npm run clean && npm run build && npm test && npm run prepublishOnly",
     "test": "karma start",
     "test-watch": "karma start --singleRun=false --autoWatch=true",
-    "prepublish": "ngc && npm run build",
+    "prepublishOnly": "ngc && npm run build",
     "build": "webpack",
     "commit": "npm run prepublish && npm test && git-cz"
   },
@@ -41,7 +41,8 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "peerDependencies": {
-    "@angular/core": ">=4.0.0 || >=5.0.0"
+    "@angular/core": ">=4.0.0 || >=5.0.0",
+    "@angular/common": ">=4.0.0 || >=5.0.0"
   },
   "devDependencies": {
     "@angular/common": "^5.0.1",
@@ -52,8 +53,8 @@
     "@angular/platform-browser-dynamic": "^5.0.1",
     "@angular/platform-server": "^5.0.1",
     "@types/hammerjs": "2.0.35",
-    "@types/jasmine": "2.6.3",
-    "@types/node": "8.0.51",
+    "@types/jasmine": "2.8.2",
+    "@types/node": "8.0.53",
     "awesome-typescript-loader": "3.3.0",
     "clean-webpack-plugin": "0.1.17",
     "codelyzer": "^4.0.1",
@@ -77,7 +78,7 @@
     "ts-helpers": "1.1.2",
     "tslint": "5.8.0",
     "tslint-loader": "3.5.3",
-    "typescript": "2.6.1",
+    "typescript": "2.4.2",
     "webpack": "3.8.1",
     "zone.js": "0.8.18"
   }
