@@ -124,6 +124,57 @@ export class AppComponent {
 }
 ```
 
+### <a name="universal"></a> Angular Universal Usage
+
+`ngx-cookie` supports usage during Server Side Rendering (SSR / Angular Universal). Getting Server Side Rendering itself set up the first time can be tricky and is outside the scope of this guide. Here, we'll assume that you've got a working SSR setup similar to the [Angular Universal Starter project](https://github.com/angular/universal-starter), and you're just trying to get `ngx-cookie` working with SSR.
+
+_Note: during normal, client side usage, `ngx-cookie` manipulates the client cookies attached to the `document` object. During SSR, `ngx-cookie` will manipulate cookies in http request or response headers._
+
+#### Setup
+
+First up, edit `app.server.module.ts` (located in `root > src > app` of the Universal starter project) to overwrite ngx-cookie's `CookieService` with ngx-cookie's `CookieBackendService` during server side rendering.
+
+```
+/* app.server.module.ts */
+
+import { CookieService, CookieBackendService } from 'ngx-cookie';
+
+@NgModule({
+  imports: [
+    AppModule,
+    ServerModule,
+    ModuleMapLoaderModule,
+  ],
+  bootstrap: [AppComponent],
+  providers: [{ provide: CookieService, useClass: CookieBackendService }], // <--- CHANGES * * * * *
+})
+export class AppServerModule {}
+```
+Next, we need to make providers for the `'REQUEST'` and `'RESPONSE'` objects created by the expressjs server during SSR. You can check out the `CookieBackendService` code, but during SSR `ngx-cookie` inject's these objects into `CookieBackendService`. To do this, edit `server.ts` (located in the root of the Universal Starter Project) to create providers for `'REQUEST'` AND `'RESPONSE'`.
+
+```
+/* server.ts */
+
+// Find the call to res.render() in the file and
+// update it with providers for 'REQUEST' and 'RESPONSE'
+
+app.get('*', (req, res) => {
+  res.render('index', {
+    req: req,
+    res: res,
+    providers: [
+      {
+        provide: 'REQUEST', useValue: (req)
+      },
+      {
+        provide: 'RESPONSE', useValue: (res)
+      }
+    ]
+  });
+});
+```
+
+And that's it! all your application's calls to `CookieService` should now work properly during SSR!
 
 ### <a name="examples"></a> Examples
 
