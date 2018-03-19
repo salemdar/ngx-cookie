@@ -7,8 +7,8 @@
     "clean-build": "npm run clean && npm run build && npm test && npm run prepublishOnly",
     "test": "karma start",
     "test-watch": "karma start --singleRun=false --autoWatch=true",
-    "prepublishOnly": "ngc && npm run build",
-    "build": "webpack",
+    "prepublishOnly": "npm run build",
+    "build": "ngc && webpack && rollup -c",
     "commit": "npm run prepublish && npm test && git-cz"
   },
   "repository": {
@@ -38,8 +38,8 @@
     "url": "https://github.com/salemdar/ngx-cookie/issues"
   },
   "main": "bundles/ngx-cookie.umd.js",
-  "module": "index.js",
-  "typings": "index.d.ts",
+  "module": "bundles/ngx-cookie.js",
+  "typings": "dist/ngx-cookie.d.ts",
   "peerDependencies": {
     "@angular/common": ">=4.0.0 || >=5.0.0",
     "@angular/core": ">=4.0.0 || >=5.0.0"
