@@ -8,17 +8,10 @@ build.xml
 node_modules/*
 npm-debug.log
 yarn-error.log
-*.js
-!config/*
-!karma.conf.js
-!webpack.config.js
-*.map
-*.d.ts
-!make.js
-!examples/**/*.js
 coverage
 *.metadata.json
 bundles
+dist
 
 #################
 ## JetBrains

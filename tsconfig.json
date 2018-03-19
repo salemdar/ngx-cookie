@@ -13,14 +13,11 @@
       "jasmine",
       "node"
     ],
-    "lib": ["es2015", "dom"]
+    "lib": ["es2015", "dom"],
+    "outDir": "./dist/"
   },
   "files": [
-    "index.ts",
-    "./src/cookie.service.ts",
-    "./src/cookie-backend.service.ts",
-    "./src/cookie-options.model.ts",
-    "tests/cookie.service.spec.ts"
+    "index.ts"
   ],
   "exclude": [
     "node_modules",
@@ -28,6 +25,8 @@
   ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true,
-    "skipTemplateCodegen": true
+    "skipTemplateCodegen": true,
+    "flatModuleOutFile": "ngx-cookie.js",
+    "flatModuleId": "ngx-cookie"
   }
 }
