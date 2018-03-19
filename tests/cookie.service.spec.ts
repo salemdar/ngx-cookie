@@ -24,6 +24,7 @@ describe('CookieService', () => {
   });
 
   it('is defined', () => {
+    console.log('HELLO');
     expect(CookieService).toBeDefined();
     expect(cookieService).toBeDefined();
     expect(cookieService instanceof CookieService).toBeTruthy();

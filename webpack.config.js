@@ -40,11 +40,8 @@ module.exports = {
             loader: 'tslint-loader',
             exclude: [helpers.root('node_modules')]
         }, {
-            test: /\.ts$/,
-            loader: 'awesome-typescript-loader',
-            options: {
-                declaration: false
-            },
+            test: /\.tsx?$/,
+            loader: 'ts-loader',
             exclude: [/\.spec\.ts$/]
         }]
     },
