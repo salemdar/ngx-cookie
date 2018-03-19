@@ -1,5 +1,7 @@
 # ngx-cookie  [![Build Status](https://travis-ci.org/salemdar/ngx-cookie.svg?branch=master)](https://travis-ci.org/salemdar/ngx-cookie) [![npm version](https://img.shields.io/npm/v/ngx-cookie.svg)](https://www.npmjs.com/package/ngx-cookie) [![Downloads](http://img.shields.io/npm/dm/ngx-cookie.svg)](https://npmjs.org/package/ngx-cookie)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/salemdar/ngx-cookie.svg)](https://greenkeeper.io/)
+
 > Implementation of Angular 1.x $cookies service to Angular. Successor of [angular2-cookie](https://github.com/salemdar/angular2-cookie)
 
 ## Table of contents:
