@@ -8,7 +8,7 @@
     "test": "karma start",
     "test-watch": "karma start --singleRun=false --autoWatch=true",
     "prepublishOnly": "npm run build",
-    "build": "ngc && webpack && rollup -c",
+    "build": "ngc && webpack",
     "commit": "npm run prepublish && npm test && git-cz"
   },
   "repository": {

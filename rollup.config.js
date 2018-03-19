@@ -4,7 +4,7 @@ const globals = {
 };
 
 export default {
-  input: 'dist/ngx-cookie.js',
+  entry: 'dist/index.js',
   external: Object.keys(globals),
   output: {
     file: 'bundles/ngx-cookie.js',
