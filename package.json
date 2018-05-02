@@ -54,7 +54,7 @@
     "@angular/platform-server": "^5.2.9",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.8.6",
-    "@types/node": "^9.4.7",
+    "@types/node": "^10.0.3",
     "clean-webpack-plugin": "^0.1.19",
     "codelyzer": "^4.2.1",
     "core-js": "^2.5.3",
