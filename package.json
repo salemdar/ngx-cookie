@@ -51,7 +51,7 @@
     "@angular/core": "^5.2.9",
     "@angular/platform-browser": "^5.2.9",
     "@angular/platform-browser-dynamic": "^5.2.9",
-    "@angular/platform-server": "^5.2.9",
+    "@angular/platform-server": "^6.0.0",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.4.7",
