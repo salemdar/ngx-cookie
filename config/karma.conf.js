@@ -54,14 +54,25 @@ module.exports = function(config) {
         autoWatch: false,
 
         browsers: [
-            'Chrome'
+            'ChromeHeadless'
         ],
 
         customLaunchers: {
-            ChromeTravisCi: {
-                base: 'Chrome',
-                flags: ['--no-sandbox']
-            }
+          ChromeHeadless: {
+            base: 'Chrome',
+            flags: [
+              '--no-sandbox',
+              '--disable-translate',
+              '--headless',
+              '--disable-gpu',
+              '--disable-extensions',
+              '--remote-debugging-port=9222'
+            ]
+          },
+          ChromeTravisCi: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+          }
         },
 
         singleRun: true

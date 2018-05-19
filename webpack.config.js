@@ -15,6 +15,7 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
 module.exports = {
     devtool: 'inline-source-map',
+    mode: 'production',
 
     resolve: {
         extensions: ['.ts', '.js']
@@ -38,6 +39,9 @@ module.exports = {
             enforce: 'pre',
             test: /\.ts$/,
             loader: 'tslint-loader',
+            options: {
+              typeCheck: true
+            },
             exclude: [helpers.root('node_modules')]
         }, {
             test: /\.tsx?$/,

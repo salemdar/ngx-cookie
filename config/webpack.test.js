@@ -30,6 +30,10 @@ module.exports = {
             enforce: 'pre',
             test: /\.ts$/,
             loader: 'tslint-loader',
+            options: {
+              typeCheck: true,
+              tsConfigFile: 'tsconfig.test.json'
+            },
             exclude: [helpers.root('node_modules')]
         }, {
             enforce: 'pre',
