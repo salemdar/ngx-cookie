@@ -1,16 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { COOKIE_OPTIONS, CookieOptionsProvider } from './src/cookie-options-provider';
-import { CookieService } from './src/cookie.service';
-import { CookieOptions } from './src/cookie-options.model';
-import { cookieServiceFactory } from './src/cookie.factory';
-
-export * from './src/cookie.service';
-export * from './src/cookie-backend.service';
-export * from './src/cookie-options.model';
-export * from './src/cookie-options-provider';
-export * from './src/cookie.factory';
-export * from './src/utils';
+import { CookieOptionsProvider, COOKIE_OPTIONS } from './cookie-options-provider';
+import { CookieService } from './cookie.service';
+import { CookieOptions } from './cookie-options.model';
+import { cookieServiceFactory } from './cookie.factory';
 
 @NgModule({
   providers: [CookieOptionsProvider]
@@ -18,8 +11,6 @@ export * from './src/utils';
 export class CookieModule {
   /**
    * Use this method in your root module to provide the CookieService
-   * @param {CookieOptions} options
-   * @returns {ModuleWithProviders}
    */
   static forRoot(options: CookieOptions = {}): ModuleWithProviders {
     return {
@@ -33,8 +24,6 @@ export class CookieModule {
 
   /**
    * Use this method in your other (non root) modules to import the directive/pipe
-   * @param {CookieOptions} options
-   * @returns {ModuleWithProviders}
    */
   static forChild(options: CookieOptions = {}): ModuleWithProviders {
     return {

@@ -1,25 +1,32 @@
+sudo: required
+dist: trusty
+
+addons.apt:
+  update: true
+  sources: google-chrome
+  packages: google-chrome-stable
+
 language: node_js
 
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
-sudo: false
+notifications.email: false
 
-notifications:
-  email: false
+node_js: '8'
 
-node_js:
-  - "8"
-
-branches:
-  except:
-    - "/^v\\d+\\.\\d+\\.\\d+$/"
+branches.except: "/^v\\d+\\.\\d+\\.\\d+$/"
 
 before_install:
-  - export CHROME_BIN=chromium-browser
-
+  - yarn global add greenkeeper-lockfile@1
 before_script:
-  - npm prune
-
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  - greenkeeper-lockfile-update  
+script:
+  - yarn build
+  - yarn test
+after_script:
+  - greenkeeper-lockfile-upload
+after_success:
+  - yarn travis-deploy-once "yarn semantic-release"
