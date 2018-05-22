@@ -1,16 +1,13 @@
 {
   "name": "ngx-cookie",
-  "version": "0.0.0-development",
+  "version": "4.0.0",
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once",
-    "commit": "git-cz"
+    "lint": "ng lint"
   },
   "repository": {
     "type": "git",
@@ -65,7 +62,6 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^10.1.2",
     "codelyzer": "^4.3.0",
-    "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
     "jasmine-core": "^3.1.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -76,26 +72,10 @@
     "karma-jasmine-html-reporter": "^1.1.0",
     "ng-packagr": "^3.0.0-rc.2",
     "protractor": "~5.3.0",
-    "semantic-release": "^15.5.0",
-    "travis-deploy-once": "^5.0.0",
     "ts-node": "^6.0.3",
     "tsickle": ">=0.25.5",
     "tslib": "^1.7.1",
     "tslint": "^5.10.0",
     "typescript": "~2.7.2"
-  },
-  "release": {
-    "publish": [
-      {
-        "path": "@semantic-release/npm",
-        "pkgRoot": "dist"
-      },
-      "@semantic-release/github"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }

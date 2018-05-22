@@ -28,5 +28,3 @@ script:
   - yarn test
 after_script:
   - greenkeeper-lockfile-upload
-after_success:
-  - yarn travis-deploy-once "yarn semantic-release"
