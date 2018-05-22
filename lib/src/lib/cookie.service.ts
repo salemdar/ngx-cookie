@@ -42,8 +42,8 @@ export class CookieService implements ICookieService {
    * @description
    * Returns the value of given cookie key.
    *
-   * @param {string} key Id to use for lookup.
-   * @returns {string} Raw cookie value.
+   * @param key Id to use for lookup.
+   * @returns Raw cookie value.
    */
   get(key: string): string {
     return (<any>this._cookieReader())[key];
@@ -55,11 +55,11 @@ export class CookieService implements ICookieService {
    * @description
    * Returns the deserialized value of given cookie key.
    *
-   * @param {string} key Id to use for lookup.
-   * @returns {Object} Deserialized cookie value.
+   * @param key Id to use for lookup.
+   * @returns Deserialized cookie value.
    */
   getObject(key: string): Object {
-    let value = this.get(key);
+    const value = this.get(key);
     return value ? safeJsonParse(value) : value;
   }
 
@@ -69,7 +69,7 @@ export class CookieService implements ICookieService {
    * @description
    * Returns a key value object with all the cookies.
    *
-   * @returns {Object} All cookies
+   * @returns All cookies
    */
   getAll(): Object {
     return <any>this._cookieReader();
@@ -81,9 +81,9 @@ export class CookieService implements ICookieService {
    * @description
    * Sets a value for given cookie key.
    *
-   * @param {string} key Id for the `value`.
-   * @param {string} value Raw value to be stored.
-   * @param {CookieOptions} options (Optional) Options object.
+   * @param key Id for the `value`.
+   * @param value Raw value to be stored.
+   * @param options (Optional) Options object.
    */
   put(key: string, value: string, options?: CookieOptions) {
     this._cookieWriter()(key, value, options);
@@ -95,9 +95,9 @@ export class CookieService implements ICookieService {
    * @description
    * Serializes and sets a value for given cookie key.
    *
-   * @param {string} key Id for the `value`.
-   * @param {Object} value Value to be stored.
-   * @param {CookieOptions} options (Optional) Options object.
+   * @param key Id for the `value`.
+   * @param value Value to be stored.
+   * @param options (Optional) Options object.
    */
   putObject(key: string, value: Object, options?: CookieOptions) {
     this.put(key, JSON.stringify(value), options);
@@ -109,8 +109,8 @@ export class CookieService implements ICookieService {
    * @description
    * Remove given cookie.
    *
-   * @param {string} key Id of the key-value pair to delete.
-   * @param {CookieOptions} options (Optional) Options object.
+   * @param key Id of the key-value pair to delete.
+   * @param options (Optional) Options object.
    */
   remove(key: string, options?: CookieOptions): void {
     this._cookieWriter()(key, undefined, options);
@@ -123,7 +123,7 @@ export class CookieService implements ICookieService {
    * Remove all cookies.
    */
   removeAll(options?: CookieOptions): void {
-    let cookies = this.getAll();
+    const cookies = this.getAll();
     Object.keys(cookies).forEach(key => {
       this.remove(key, options);
     });
@@ -133,7 +133,7 @@ export class CookieService implements ICookieService {
     let lastCookies = {};
     let lastCookieString = '';
     let cookieArray: string[], cookie: string, i: number, index: number, name: string;
-    let currentCookieString = this.cookieString;
+    const currentCookieString = this.cookieString;
     if (currentCookieString !== lastCookieString) {
       lastCookieString = currentCookieString;
       cookieArray = lastCookieString.split('; ');
@@ -156,7 +156,7 @@ export class CookieService implements ICookieService {
   }
 
   private _cookieWriter() {
-    let that = this;
+    const that = this;
 
     return function (name: string, value: string, options?: CookieOptions) {
       that.cookieString = that._buildCookieString(name, value, options);
@@ -164,7 +164,7 @@ export class CookieService implements ICookieService {
   }
 
   private _buildCookieString(name: string, value: string, options?: CookieOptions): string {
-    let opts: CookieOptions = mergeOptions(this.options, options);
+    const opts: CookieOptions = mergeOptions(this.options, options);
     let expires: any = opts.expires;
     if (isBlank(value)) {
       expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
@@ -173,7 +173,7 @@ export class CookieService implements ICookieService {
     if (isString(expires)) {
       expires = new Date(expires);
     }
-    let cookieValue = opts.storeUnencoded ? value : encodeURIComponent(value);
+    const cookieValue = opts.storeUnencoded ? value : encodeURIComponent(value);
     let str = encodeURIComponent(name) + '=' + cookieValue;
     str += opts.path ? ';path=' + opts.path : '';
     str += opts.domain ? ';domain=' + opts.domain : '';
@@ -185,12 +185,10 @@ export class CookieService implements ICookieService {
     // - 300 cookies
     // - 20 cookies per unique domain
     // - 4096 bytes per cookie
-    let cookieLength = str.length + 1;
+    const cookieLength = str.length + 1;
     if (cookieLength > 4096) {
-      console.log(`Cookie \'${name}\' possibly not set or overflowed because it was too 
-      large (${cookieLength} > 4096 bytes)!`);
+      console.log(`Cookie \'${name}\' possibly not set or overflowed because it was too large (${cookieLength} > 4096 bytes)!`);
     }
     return str;
   }
-
 }

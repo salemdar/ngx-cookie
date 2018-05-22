@@ -1,15 +1,16 @@
 {
   "name": "ngx-cookie",
-  "version": "3.0.0",
+  "version": "0.0.0-development",
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "scripts": {
-    "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.metadata.json src/**/*.js tests/**/*.d.ts tests/**/*.metadata.json tests/**/*.js index.d.ts index.metadata.json index.js",
-    "clean-build": "npm run clean && npm run build && npm test && npm run prepublishOnly",
-    "test": "karma start",
-    "test-watch": "karma start --singleRun=false --autoWatch=true",
-    "prepublishOnly": "npm run build",
-    "build": "ngc && webpack",
-    "commit": "npm run prepublish && npm test && git-cz"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once",
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",
@@ -32,56 +33,69 @@
     "ngx-cookies"
   ],
   "author": "Samet Alemdar <sa.alemdar@hotmail.com>",
+  "contributors": [
+    "Hallyson Almeida <hallysonh@gmail.com>"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/salemdar/ngx-cookie#readme",
   "bugs": {
     "url": "https://github.com/salemdar/ngx-cookie/issues"
   },
-  "main": "bundles/ngx-cookie.umd.js",
-  "module": "bundles/ngx-cookie.js",
-  "typings": "dist/ngx-cookie.d.ts",
-  "peerDependencies": {
-    "@angular/common": ">=4.0.0 || >=5.0.0",
-    "@angular/core": ">=4.0.0 || >=5.0.0"
+  "dependencies": {
+    "@angular/animations": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/forms": "^6.0.0",
+    "@angular/http": "^6.0.0",
+    "@angular/platform-browser": "^6.0.0",
+    "@angular/platform-browser-dynamic": "^6.0.0",
+    "@angular/router": "^6.0.0",
+    "core-js": "^2.5.4",
+    "rxjs": "^6.0.0",
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular/common": "^5.2.9",
-    "@angular/compiler": "^5.2.9",
-    "@angular/compiler-cli": "^5.2.9",
-    "@angular/core": "^5.2.9",
-    "@angular/platform-browser": "^5.2.9",
-    "@angular/platform-browser-dynamic": "^5.2.9",
-    "@angular/platform-server": "^5.2.9",
-    "@types/hammerjs": "^2.0.35",
-    "@types/jasmine": "^2.8.6",
-    "@types/node": "^9.4.7",
-    "clean-webpack-plugin": "^0.1.19",
-    "codelyzer": "^4.2.1",
-    "core-js": "^2.5.3",
+    "@angular-devkit/build-angular": "~0.6.1",
+    "@angular-devkit/build-ng-packagr": "~0.6.3",
+    "@angular/cli": "~6.0.1",
+    "@angular/compiler-cli": "^6.0.0",
+    "@angular/language-service": "^6.0.0",
+    "@types/jasmine": "~2.8.6",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
+    "codelyzer": "~4.2.1",
+    "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
-    "istanbul-instrumenter-loader": "^3.0.0",
-    "jasmine-core": "^2.99.1",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage": "^1.1.1",
-    "karma-jasmine": "^1.1.1",
-    "karma-mocha-reporter": "^2.2.5",
-    "karma-remap-coverage": "^0.1.5",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.13",
-    "loader-utils": "^1.1.0",
-    "reflect-metadata": "^0.1.12",
-    "rimraf": "^2.6.2",
-    "rollup": "^0.57.1",
-    "rxjs": "^5.5.7",
-    "source-map-loader": "^0.2.3",
-    "ts-helpers": "^1.1.2",
-    "ts-loader": "^4.1.0",
-    "tslint": "^5.9.1",
-    "tslint-loader": "^3.6.0",
-    "typescript": "^2.7.2",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12",
-    "zone.js": "^0.8.20"
+    "jasmine-core": "~2.99.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~1.7.1",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~1.4.2",
+    "karma-jasmine": "~1.1.1",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^3.0.0-rc.2",
+    "protractor": "~5.3.0",
+    "semantic-release": "^15.4.1",
+    "travis-deploy-once": "^5.0.0",
+    "ts-node": "~5.0.1",
+    "tsickle": ">=0.25.5",
+    "tslib": "^1.7.1",
+    "tslint": "~5.9.1",
+    "typescript": "~2.7.2"
+  },
+  "release": {
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "pkgRoot": "dist"
+      },
+      "@semantic-release/github"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
