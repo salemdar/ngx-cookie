@@ -18,8 +18,8 @@
  * - **httpOnly** - {boolean} - If `true`, then the cookie will be set with the `HttpOnly`
  *   flag, and will only be accessible from the remote server. Helps to prevent against
  *   XSS attacks.
- * - **storeUnencoded** - {boolean} - If `true`, then the cookie value will not be encoded and 
- *   will be stored as provided. 
+ * - **storeUnencoded** - {boolean} - If `true`, then the cookie value will not be encoded and
+ *   will be stored as provided.
  */
 export interface CookieOptions {
   path?: string;

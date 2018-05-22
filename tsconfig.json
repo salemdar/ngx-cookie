@@ -1,32 +1,20 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
+    "baseUrl": "./",
+    "outDir": "./out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "declaration": true,
-    "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "types": [
-      "hammerjs",
-      "jasmine",
-      "node"
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
     ],
-    "lib": ["es2015", "dom"],
-    "outDir": "./dist/"
-  },
-  "files": [
-    "index.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "bundles"
-  ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "skipTemplateCodegen": true,
-    "flatModuleOutFile": "ngx-cookie.js",
-    "flatModuleId": "ngx-cookie"
+    "lib": [
+      "es2017",
+      "dom"
+    ]
   }
 }

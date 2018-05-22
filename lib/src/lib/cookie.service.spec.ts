@@ -1,7 +1,11 @@
 import { Injector } from '@angular/core';
-import { TestBed, getTestBed } from '@angular/core/testing';
+import { TestBed, inject, getTestBed } from '@angular/core/testing';
 
-import { CookieOptions, CookieService, CookieModule } from '../index';
+import { CookieOptionsProvider, COOKIE_OPTIONS } from './cookie-options-provider';
+import { CookieService } from './cookie.service';
+import { CookieOptions } from './cookie-options.model';
+import { cookieServiceFactory } from './cookie.factory';
+import { CookieModule } from '../public_api';
 
 describe('CookieService', () => {
   let injector: Injector;
@@ -24,42 +28,41 @@ describe('CookieService', () => {
   });
 
   it('is defined', () => {
-    console.log('HELLO');
     expect(CookieService).toBeDefined();
     expect(cookieService).toBeDefined();
     expect(cookieService instanceof CookieService).toBeTruthy();
   });
 
   it('should return undefined a non-existent cookie', () => {
-    let key = 'nonExistentCookieKey';
+    const key = 'nonExistentCookieKey';
     expect(cookieService.get(key)).toBeUndefined();
   });
 
   it('should set and get a simple cookie', () => {
-    let key = 'testCookieKey';
-    let value = 'testCookieValue';
+    const key = 'testCookieKey';
+    const value = 'testCookieValue';
     cookieService.put(key, value);
     expect(cookieService.get(key)).toBe(value);
   });
 
   it('should get as string with getObject if  cannot deserialize', () => {
-    let key = 'testCookieKey';
-    let value = 'testCookieValue';
+    const key = 'testCookieKey';
+    const value = 'testCookieValue';
     cookieService.put(key, value);
     expect(cookieService.getObject(key)).toBe(value);
   });
 
   it('should get empty cookie', () => {
-    let key = 'testCookieKey';
-    let value = '';
+    const key = 'testCookieKey';
+    const value = '';
     cookieService.put(key, value);
     expect(cookieService.getObject(key)).toBe(value);
   });
 
   it('should edit a simple cookie', () => {
-    let key = 'testCookieKey';
-    let oldValue = 'testCookieValue';
-    let newValue = 'testCookieValueNew';
+    const key = 'testCookieKey';
+    const oldValue = 'testCookieValue';
+    const newValue = 'testCookieValueNew';
     cookieService.put(key, oldValue);
     expect(cookieService.get(key)).toBe(oldValue);
     cookieService.put(key, newValue);
@@ -67,8 +70,8 @@ describe('CookieService', () => {
   });
 
   it('should remove a cookie', () => {
-    let key = 'testCookieKey';
-    let value = 'testCookieValue';
+    const key = 'testCookieKey';
+    const value = 'testCookieValue';
     cookieService.put(key, value);
     expect(cookieService.get(key)).toBe(value);
     cookieService.remove(key);
@@ -76,23 +79,23 @@ describe('CookieService', () => {
   });
 
   it('should set and get an object cookie', () => {
-    let key = 'testCookieKey';
-    let value = {key1: 'value1', key2: 'value2'};
+    const key = 'testCookieKey';
+    const value = {key1: 'value1', key2: 'value2'};
     cookieService.putObject(key, value);
     expect(cookieService.getObject(key)).toEqual(value);
   });
 
   it('should set and get multiple cookies', () => {
-    let simpleCookies = [
+    const simpleCookies = [
       {key: 'key1', value: 'value1'}, {key: 'key2', value: 'value2'},
       {key: 'key3', value: 'value3'}
     ];
-    let objectCookies = [
+    const objectCookies = [
       {key: 'keyO1', value: {keyO1_1: 'valueO1_1', keyO1_2: 'valueO1_2'}},
       {key: 'keyO2', value: {keyO2_1: 'valueO2_1', keyO2_2: 'valueO2_2'}},
       {key: 'keyO3', value: {keyO3_1: 'valueO3_1', keyO3_2: 'valueO3_2'}}
     ];
-    let result: any = {};
+    const result: any = {};
     simpleCookies.forEach(c => {
       result[c.key] = c.value;
       cookieService.put(c.key, c.value);
@@ -105,11 +108,11 @@ describe('CookieService', () => {
   });
 
   it('should remove all cookies', () => {
-    let simpleCookies = [
+    const simpleCookies = [
       {key: 'key1', value: 'value1'}, {key: 'key2', value: 'value2'},
       {key: 'key3', value: 'value3'}
     ];
-    let objectCookies = [
+    const objectCookies = [
       {key: 'keyO1', value: {keyO1_1: 'valueO1_1', keyO1_2: 'valueO1_2'}},
       {key: 'keyO2', value: {keyO2_1: 'valueO2_1', keyO2_2: 'valueO2_2'}},
       {key: 'keyO3', value: {keyO3_1: 'valueO3_1', keyO3_2: 'valueO3_2'}}
@@ -123,20 +126,20 @@ describe('CookieService', () => {
     cookieService.removeAll();
     expect(cookieService.getAll()).toEqual({});
   });
-  
+
   it('should remove all cookies when passing options', () => {
-    let optionCookies = {
+    const optionCookies = {
       path: '/',
       domain: 'localhost',
       expires: new Date(),
       secure: false,
     };
-    let simpleCookies = [
-      {key: 'key1', value: 'value1', option: optionCookies}, 
+    const simpleCookies = [
+      {key: 'key1', value: 'value1', option: optionCookies},
       {key: 'key2', value: 'value2', option: optionCookies},
       {key: 'key3', value: 'value3', option: optionCookies}
     ];
-    let objectCookies = [
+    const objectCookies = [
       {key: 'keyO1', value: {keyO1_1: 'valueO1_1', keyO1_2: 'valueO1_2'}, option: optionCookies},
       {key: 'keyO2', value: {keyO2_1: 'valueO2_1', keyO2_2: 'valueO2_2'}, option: optionCookies},
       {key: 'keyO3', value: {keyO3_1: 'valueO3_1', keyO3_2: 'valueO3_2'}, option: optionCookies}
@@ -156,9 +159,9 @@ describe('CookieService', () => {
   });
 
   it('should change the settings', () => {
-    let key = 'testCookieKey';
-    let value = 'testCookieValue';
-    let opts: CookieOptions = {
+    const key = 'testCookieKey';
+    const value = 'testCookieValue';
+    const opts: CookieOptions = {
       expires: new Date('2030-07-19')
     };
     cookieService.put(key, value, opts);
@@ -166,14 +169,13 @@ describe('CookieService', () => {
   });
 
   it('should store unencoded cookie values if requested', () => {
-    let key = 'testCookieKey';
-    let value = 'testCookieValue=unencoded';
-    let opts: CookieOptions = {
+    const key = 'testCookieKey';
+    const value = 'testCookieValue=unencoded';
+    const opts: CookieOptions = {
       storeUnencoded: true
     };
     cookieService.put(key, value, opts);
     expect(document.cookie).toBe(`${key}=${value}`);
     expect(cookieService.get(key)).toBe(value);
   });
-
 });

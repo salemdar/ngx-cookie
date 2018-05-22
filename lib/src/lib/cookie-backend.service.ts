@@ -6,9 +6,11 @@ import { CookieOptionsProvider } from './cookie-options-provider';
 @Injectable()
 export class CookieBackendService extends CookieService {
 
-  constructor(@Inject('REQUEST') private request: any,
-              @Inject('RESPONSE') private response: any,
-              _optionsProvider: CookieOptionsProvider) {
+  constructor(
+    @Inject('REQUEST') private request: any,
+    @Inject('RESPONSE') private response: any,
+    _optionsProvider: CookieOptionsProvider
+  ) {
     super(_optionsProvider);
   }
 
