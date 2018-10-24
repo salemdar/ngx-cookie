@@ -2,13 +2,14 @@ import { Inject, Injectable } from '@angular/core';
 
 import { CookieService } from './cookie.service';
 import { CookieOptionsProvider } from './cookie-options-provider';
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 
 @Injectable()
 export class CookieBackendService extends CookieService {
 
   constructor(
-    @Inject('REQUEST') private request: any,
-    @Inject('RESPONSE') private response: any,
+    @Inject(REQUEST) private request: any,
+    @Inject(RESPONSE) private response: any,
     _optionsProvider: CookieOptionsProvider
   ) {
     super(_optionsProvider);
