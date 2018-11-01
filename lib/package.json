@@ -32,7 +32,7 @@
     "url": "https://github.com/salemdar/ngx-cookie/issues"
   },
   "peerDependencies": {
-    "@angular/common": ">=4.0.0 || >=5.0.0 || >=6.0.0 || ^7.0.0",
-    "@angular/core": ">=4.0.0 || >=5.0.0 || >=6.0.0 || ^7.0.0"
+    "@angular/common": ">=5.0.0",
+    "@angular/core": ">=5.0.0"
   }
 }
