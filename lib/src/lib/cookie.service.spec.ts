@@ -1,10 +1,8 @@
 import { Injector } from '@angular/core';
-import { TestBed, inject, getTestBed } from '@angular/core/testing';
+import { TestBed, getTestBed } from '@angular/core/testing';
 
-import { CookieOptionsProvider, COOKIE_OPTIONS } from './cookie-options-provider';
 import { CookieService } from './cookie.service';
 import { CookieOptions } from './cookie-options.model';
-import { cookieServiceFactory } from './cookie.factory';
 import { CookieModule } from '../public_api';
 
 describe('CookieService', () => {
@@ -132,7 +130,7 @@ describe('CookieService', () => {
       path: '/',
       domain: 'localhost',
       expires: new Date(),
-      secure: false,
+      secure: false
     };
     const simpleCookies = [
       {key: 'key1', value: 'value1', option: optionCookies},
@@ -178,4 +176,5 @@ describe('CookieService', () => {
     expect(document.cookie).toBe(`${key}=${value}`);
     expect(cookieService.get(key)).toBe(value);
   });
+
 });
