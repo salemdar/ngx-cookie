@@ -5,9 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && yarn copyStaticFiles",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "copyStaticFiles": "cp ./README.md ./LICENSE ./dist"
   },
   "repository": {
     "type": "git",
