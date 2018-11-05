@@ -33,6 +33,7 @@
   },
   "peerDependencies": {
     "@angular/common": ">=5.0.0",
-    "@angular/core": ">=5.0.0"
+    "@angular/core": ">=5.0.0",
+    "@nguniversal/express-engine": ">=5.0.0"
   }
 }
