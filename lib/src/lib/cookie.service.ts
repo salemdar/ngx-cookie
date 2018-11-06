@@ -10,7 +10,7 @@ declare interface Document {
 declare const document: Document;
 
 export interface ICookieService {
-  get(key: string): string;
+  get(key: string): string | undefined;
   getObject(key: string): Object;
   getAll(): Object;
   put(key: string, value: string, options?: CookieOptions): void;
@@ -45,7 +45,7 @@ export class CookieService implements ICookieService {
    * @param key Id to use for lookup.
    * @returns Raw cookie value.
    */
-  get(key: string): string {
+  get(key: string): string | undefined {
     return (<any>this._cookieReader())[key];
   }
 
