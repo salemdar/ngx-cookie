@@ -14,11 +14,11 @@ export class CookieBackendService extends CookieService {
   }
 
   protected get cookieString(): string {
-    return this.request.cookie || '';
+    return this.request.headers.cookie || '';
   }
 
   protected set cookieString(val: string) {
-    this.request.cookie = val;
+    this.request.headers.cookie = val;
     this.response.cookie = val;
   }
 }
