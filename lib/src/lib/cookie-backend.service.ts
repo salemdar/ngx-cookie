@@ -17,8 +17,13 @@ export class CookieBackendService extends CookieService {
     return this.request.headers.cookie || '';
   }
 
-  protected set cookieString(val: string) {
-    this.request.headers.cookie = val;
-    this.response.cookie = val;
+  put(key: string, value: string, options: CookieOptions = {}) {
+    this.getAll()[key] = value;
+
+    this.request.headers.cookie = Object.keys(this.getAll()).map(key => {
+      return `${key}=${this.get(key)}`;
+    }).join('; ');
+
+    this.response.cookie(key, value, options);
   }
 }
