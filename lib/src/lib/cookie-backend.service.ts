@@ -3,6 +3,7 @@ import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 
 import { CookieService } from './cookie.service';
 import { CookieOptionsProvider } from './cookie-options-provider';
+import { CookieOptions } from './cookie-options.model';
 
 @Injectable()
 export class CookieBackendService extends CookieService {
