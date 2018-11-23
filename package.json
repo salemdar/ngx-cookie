@@ -8,7 +8,8 @@
     "build": "ng build && yarn copyStaticFiles",
     "test": "ng test",
     "lint": "ng lint",
-    "copyStaticFiles": "cp ./README.md ./LICENSE ./dist"
+    "copyStaticFiles": "cp ./README.md ./LICENSE ./dist",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular"
   },
   "repository": {
     "type": "git",
@@ -57,7 +58,11 @@
     "@angular/compiler-cli": "^7.0.0",
     "@angular/language-service": "^7.0.0",
     "@types/jasmine": "~2.8.9",
+    "conventional-changelog-cli": "^2.0.5",
+    "husky": "^1.1.2",
     "@types/node": "^10.12.1",
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
     "codelyzer": "^4.5.0",
     "cz-conventional-changelog": "^2.1.0",
     "jasmine-core": "^3.3.0",
