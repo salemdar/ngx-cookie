@@ -14,7 +14,7 @@ export class CookieBackendService extends CookieService {
   }
 
   protected get cookieString(): string {
-    return this.request.cookie || '';
+    return this.request.cookie || this.request.headers['cookie'] || '';
   }
 
   protected set cookieString(val: string) {
