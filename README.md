@@ -175,6 +175,44 @@ app.get('*', (req, res) => {
 });
 ```
 
+For prerendering, make sure to import and inject the REQUEST and RESPONSE tokens from ng-universal.
+
+```
+/* prerender.ts */
+
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
+
+
+let previousRender = Promise.resolve();
+
+// Iterate each route path
+ROUTES.forEach(route => {
+  const fullPath = join(BROWSER_FOLDER, route);
+
+  // Make sure the directory structure is there
+  if (!existsSync(fullPath)) {
+    mkdirSync(fullPath);
+  }
+
+  // Writes rendered HTML to index.html, replacing the file if it already exists.
+  previousRender = previousRender.then(_ => renderModuleFactory(AppServerModuleNgFactory, {
+    document: index,
+    url: route,
+    extraProviders: [
+      provideModuleMap(LAZY_MODULE_MAP),
+      {
+        provide: REQUEST,
+        useValue: { cookie: '', headers: {} },
+      },
+      {
+        provide: RESPONSE,
+        useValue: {},
+      }
+    ]
+  })).then(html => writeFileSync(join(fullPath, 'index.html'), html));
+});
+```
+
 And that's it! all your application's calls to `CookieService` should now work properly during SSR!
 
 ### <a name="examples"></a> Examples
