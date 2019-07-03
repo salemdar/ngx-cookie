@@ -288,10 +288,10 @@
     tree-kill "1.2.0"
     webpack-sources "1.2.0"
 
-"@nguniversal/express-engine@^7.0.0":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-7.0.2.tgz#f7722828d7ec14951d0c24ad438772daf79583c8"
-  integrity sha512-mmNgDpUrcuFcjBOfUlmAliS3St4tSekLdQZWu6PK/d+kw5zicDDlSO/UoUw5g+wz7YHkGQK+VDy3wHc0Bo36rA==
+"@nguniversal/express-engine@^8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-8.1.0.tgz#11b429afe63d249ccb7d05328c9003509312ada7"
+  integrity sha512-OT8o+sSLAPWr3F2CO3a4CsQAitBQIt+6i78jOFhaii5Agsdy6XKbSf9yPhpn0IjoKdTjk77KJBcNcUPxWccS/g==
 
 "@schematics/angular@7.0.4":
   version "7.0.4"
