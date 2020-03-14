@@ -1,5 +1,5 @@
 {
-  "name": "ngx-cookie",
+  "name": "ngx-cookie-backend",
   "version": "5.0.0",
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "repository": {
@@ -31,6 +31,8 @@
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
-    "tslib": "^1.10.0"
+    "@nguniversal/express-engine": "^9.0.0",
+    "tslib": "^1.10.0",
+    "ngx-cookie": "^5.0.0"
   }
 }

@@ -18,7 +18,7 @@ export class CookieService implements ICookieService {
     this.document.cookie = val;
   }
 
-  constructor(@Inject(DOCUMENT) private document: Document,
+  constructor(@Inject(DOCUMENT) private document: any,
               private optionsProvider: CookieOptionsProvider) {
     this.options = this.optionsProvider.options;
   }

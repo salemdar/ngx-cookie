@@ -42,6 +42,167 @@
           }
         }
       }
+    },
+    "test-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/test-app",
+      "sourceRoot": "projects/test-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/test-app",
+            "index": "projects/test-app/src/index.html",
+            "main": "projects/test-app/src/main.ts",
+            "polyfills": "projects/test-app/src/polyfills.ts",
+            "tsConfig": "projects/test-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/test-app/src/favicon.ico",
+              "projects/test-app/src/assets"
+            ],
+            "styles": [
+              "projects/test-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/test-app/src/environments/environment.ts",
+                  "with": "projects/test-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "test-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "test-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "test-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/test-app/src/test.ts",
+            "polyfills": "projects/test-app/src/polyfills.ts",
+            "tsConfig": "projects/test-app/tsconfig.spec.json",
+            "karmaConfig": "projects/test-app/karma.conf.js",
+            "assets": [
+              "projects/test-app/src/favicon.ico",
+              "projects/test-app/src/assets"
+            ],
+            "styles": [
+              "projects/test-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/test-app/tsconfig.app.json",
+              "projects/test-app/tsconfig.spec.json",
+              "projects/test-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/test-app/e2e/protractor.conf.js",
+            "devServerTarget": "test-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-app:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "ngx-cookie-backend": {
+      "projectType": "library",
+      "root": "projects/ngx-cookie-backend",
+      "sourceRoot": "projects/ngx-cookie-backend/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-cookie-backend/tsconfig.lib.json",
+            "project": "projects/ngx-cookie-backend/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-cookie-backend/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-cookie-backend/src/test.ts",
+            "tsConfig": "projects/ngx-cookie-backend/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-cookie-backend/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-cookie-backend/tsconfig.lib.json",
+              "projects/ngx-cookie-backend/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ngx-cookie"
 }

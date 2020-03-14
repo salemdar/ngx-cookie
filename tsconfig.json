@@ -19,6 +19,10 @@
       "ngx-cookie": [
         "dist/ngx-cookie/ngx-cookie",
         "dist/ngx-cookie"
+      ],
+      "ngx-cookie-backend": [
+        "dist/ngx-cookie-backend/ngx-cookie-backend",
+        "dist/ngx-cookie-backend"
       ]
     }
   },
