@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CookieOptions } from './cookie-options.model';
+import { CookieOptions } from './cookie.model';
 import { CookieModule } from './cookie.module';
 
 import { CookieService } from './cookie.service';

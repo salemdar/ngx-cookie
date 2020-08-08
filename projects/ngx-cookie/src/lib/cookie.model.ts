@@ -17,16 +17,24 @@
  * - **httpOnly** - {boolean} - If `true`, then the cookie will be set with the `HttpOnly`
  *   flag, and will only be accessible from the remote server. Helps to prevent against
  *   XSS attacks.
+ * - **sameSite** - {"Lax"|"Strict"|"None"} - Designates cookie for first party (Lax|Strict)
+ *   or third party contexts.
  * - **storeUnencoded** - {boolean} - If `true`, then the cookie value will not be encoded and
  *   will be stored as provided.
  */
 export interface CookieOptions {
   path?: string;
   domain?: string;
-  expires?: string|Date;
+  expires?: string | Date;
   secure?: boolean;
   httpOnly?: boolean;
+  sameSite?: boolean | 'lax' | 'strict' | 'none';
   storeUnencoded?: boolean;
+}
+
+export interface ICookieWriterService {
+  readAllAsString(): string;
+  write(name: string, value: string, options?: CookieOptions): void;
 }
 
 export interface ICookieService {

@@ -1,0 +1,14 @@
+<div>
+  <button id="setCookieButton"
+          (click)="setCookies()">
+    Set cookies
+  </button>
+  <button id="getCookieButton"
+          (click)="getCookies()">
+    Get cookies
+  </button>
+</div>
+<pre id="cookieValue">{{ cookieValue }}</pre>
+<pre id="objectCookieValue">{{ objectCookieValue | json }}</pre>
+<pre id="hasCookieTrue">{{ hasCookieTrue }}</pre>
+<pre id="hasCookieFalse">{{ hasCookieFalse }}</pre>

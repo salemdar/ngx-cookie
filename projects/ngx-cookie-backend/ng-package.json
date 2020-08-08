@@ -2,6 +2,10 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-cookie-backend",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "ngx-cookie": "ngx-cookie",
+      "@nguniversal/express-engine/tokens": "@nguniversal/express-engine"
+    }
   }
 }
