@@ -5,7 +5,7 @@ const objectCookieValue = '{\n' +
   '  "myKey": "myValue"\n' +
   '}';
 
-describe('workspace-project App', () => {
+describe('workspace-project test-app', () => {
   let page: AppPage;
 
   beforeEach(() => {

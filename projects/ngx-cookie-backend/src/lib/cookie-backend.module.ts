@@ -12,7 +12,7 @@ export class CookieBackendModule {
   /**
    * Use this method in your root module to provide the CookieService
    */
-  static forRoot(options: CookieOptions = {}): ModuleWithProviders {
+  static forRoot(options: CookieOptions = {}): ModuleWithProviders<CookieModule> {
     return {
       ngModule: CookieModule,
       providers: [
@@ -25,7 +25,7 @@ export class CookieBackendModule {
   /**
    * Use this method in your other (non root) modules to import the directive/pipe
    */
-  static forChild(options: CookieOptions = {}): ModuleWithProviders {
+  static forChild(options: CookieOptions = {}): ModuleWithProviders<CookieModule> {
     return CookieBackendModule.forRoot(options);
   }
 }
