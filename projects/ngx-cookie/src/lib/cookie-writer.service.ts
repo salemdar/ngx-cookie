@@ -13,7 +13,7 @@ export class CookieWriterService implements ICookieWriterService {
     return this.document.cookie || '';
   }
 
-  write(name: string, value: string, options?: CookieOptions): void {
+  write(name: string, value: string | undefined, options?: CookieOptions): void {
     this.document.cookie = buildCookieString(name, value, options);
   }
 

@@ -11,7 +11,6 @@ import { AppModule } from './app.module';
     ServerModule,
     CookieBackendModule.forRoot()
   ],
-  bootstrap: [AppComponent],
-  // providers: [{provide: CookieService, useClass: CookieBackendService}] // <--- CHANGES * * * * *
+  bootstrap: [AppComponent]
 })
 export class AppServerModule {}

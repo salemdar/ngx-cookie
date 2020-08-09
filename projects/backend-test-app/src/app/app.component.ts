@@ -9,16 +9,16 @@ import { CookieService } from 'ngx-cookie';
 })
 export class AppComponent implements OnInit {
   title = 'backend-test-app';
-  cookieValue: any;
-  objectCookieValue: any;
-  hasCookieTrue: boolean;
-  hasCookieFalse: boolean;
+  cookieValue!: string;
+  objectCookieValue?: object;
+  hasCookieTrue!: boolean;
+  hasCookieFalse!: boolean;
 
   private key = 'myCookie';
   private objectKey = 'myObjectCookie';
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: any,
+    @Inject(PLATFORM_ID) private platformId: object,
     @Inject(APP_ID) private appId: string,
     private cookieService: CookieService) {
     const platform = isPlatformBrowser(platformId) ?
@@ -31,12 +31,12 @@ export class AppComponent implements OnInit {
     this.getCookies();
   }
 
-  setCookies() {
+  setCookies(): void {
     this.cookieService.put(this.key, 'myValue');
     this.cookieService.putObject(this.objectKey, {myKey: 'myValue'});
   }
 
-  getCookies() {
+  getCookies(): void {
     this.cookieValue = this.cookieService.get(this.key);
     this.objectCookieValue = this.cookieService.getObject(this.objectKey);
     this.hasCookieTrue = this.cookieService.hasKey(this.key) && this.cookieService.hasKey(this.objectKey);

@@ -8,22 +8,22 @@ import { CookieService } from 'ngx-cookie';
 })
 export class AppComponent {
   title = 'test-app';
-  cookieValue: any;
-  objectCookieValue: any;
-  hasCookieTrue: boolean;
-  hasCookieFalse: boolean;
+  cookieValue!: string;
+  objectCookieValue?: object;
+  hasCookieTrue!: boolean;
+  hasCookieFalse!: boolean;
 
   private key = 'myCookie';
   private objectKey = 'myObjectCookie';
 
   constructor(private cookieService: CookieService) {}
 
-  setCookies() {
+  setCookies(): void {
     this.cookieService.put(this.key, 'myValue');
     this.cookieService.putObject(this.objectKey, {myKey: 'myValue'});
   }
 
-  getCookies() {
+  getCookies(): void {
     this.cookieValue = this.cookieService.get(this.key);
     this.objectCookieValue = this.cookieService.getObject(this.objectKey);
     this.hasCookieTrue = this.cookieService.hasKey(this.key) && this.cookieService.hasKey(this.objectKey);

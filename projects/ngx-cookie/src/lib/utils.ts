@@ -1,26 +1,27 @@
-import { CookieOptions } from './cookie.model';
+import { CookieDict, CookieOptions } from './cookie.model';
 
+// tslint:disable-next-line:no-any
 export function isNil(obj: any): boolean {
   return obj === undefined || obj === null;
 }
 
-export function isBlank(obj: any): boolean {
-  return isNil(obj) || obj === {};
-}
-
+// tslint:disable-next-line:no-any
 export function isPresent(obj: any): boolean {
-  return obj !== undefined && obj !== null;
+  return !isNil(obj);
 }
 
+// tslint:disable-next-line:no-any
 export function isString(obj: any): obj is string {
   return typeof obj === 'string';
 }
 
+// noinspection JSUnusedGlobalSymbols
+// tslint:disable-next-line:no-any
 export function isEmpty(value: any): boolean {
   if (isNil(value)) {
     return true;
   }
-  if (isBlank(value)) {
+  if (value === {}) {
     return true;
   }
   if (Array.isArray(value) && value.length === 0) {
@@ -29,6 +30,7 @@ export function isEmpty(value: any): boolean {
   if (typeof value !== 'boolean' && !value) {
     return true;
   }
+  // noinspection RedundantIfStatementJS
   if (Object.keys(value).length === 0 && value.constructor === Object) {
     return true;
   }
@@ -50,8 +52,8 @@ export function mergeOptions(oldOptions: CookieOptions, newOptions?: CookieOptio
   };
 }
 
-export function parseCookieString(currentCookieString: string): object {
-  let lastCookies = {};
+export function parseCookieString(currentCookieString: string): CookieDict {
+  let lastCookies: CookieDict = {};
   let lastCookieString = '';
   let cookieArray: string[];
   let cookie: string;
@@ -70,8 +72,8 @@ export function parseCookieString(currentCookieString: string): object {
         // the first value that is seen for a cookie is the most
         // specific one.  values for the same cookie name that
         // follow are for less specific paths.
-        if (isNil((lastCookies as any)[name])) {
-          (lastCookies as any)[name] = safeDecodeURIComponent(cookie.substring(index + 1));
+        if (isNil((lastCookies)[name])) {
+          lastCookies[name] = safeDecodeURIComponent(cookie.substring(index + 1));
         }
       }
     }
@@ -79,23 +81,26 @@ export function parseCookieString(currentCookieString: string): object {
   return lastCookies;
 }
 
-export function buildCookieString(name: string, value: string, options?: CookieOptions): string {
-  let expires: any = options.expires;
+export function buildCookieString(name: string, value: string | undefined, options?: CookieOptions): string {
+  let expires: string | Date | undefined = options?.expires;
+  let val: string;
   if (isNil(value)) {
     expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
-    value = '';
+    val = '';
+  } else {
+    val = value as string;
   }
   if (isString(expires)) {
     expires = new Date(expires);
   }
-  const cookieValue = options.storeUnencoded ? value : encodeURIComponent(value);
+  const cookieValue = options?.storeUnencoded ? value : encodeURIComponent(val);
   let str = encodeURIComponent(name) + '=' + cookieValue;
-  str += options.path ? ';path=' + options.path : '';
-  str += options.domain ? ';domain=' + options.domain : '';
+  str += options?.path ? ';path=' + options.path : '';
+  str += options?.domain ? ';domain=' + options.domain : '';
   str += expires ? ';expires=' + expires.toUTCString() : '';
-  str += options.sameSite ? '; SameSite=' + options.sameSite : '';
-  str += options.secure ? ';secure' : '';
-  str += options.httpOnly ? '; HttpOnly' : '';
+  str += options?.sameSite ? '; SameSite=' + options.sameSite : '';
+  str += options?.secure ? ';secure' : '';
+  str += options?.httpOnly ? '; HttpOnly' : '';
 
   // per http://www.ietf.org/rfc/rfc2109.txt browser must allow at minimum:
   // - 300 cookies
@@ -108,7 +113,7 @@ export function buildCookieString(name: string, value: string, options?: CookieO
   return str;
 }
 
-export function safeDecodeURIComponent(str: string) {
+export function safeDecodeURIComponent(str: string): string {
   try {
     return decodeURIComponent(str);
   } catch (e) {

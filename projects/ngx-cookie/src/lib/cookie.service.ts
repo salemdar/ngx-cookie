@@ -2,9 +2,9 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { CookieOptionsProvider } from './cookie-options.provider';
 
-import { CookieOptions, ICookieService, ICookieWriterService } from './cookie.model';
+import { CookieDict, CookieOptions, ICookieService, ICookieWriterService } from './cookie.model';
 import { COOKIE_WRITER } from './tokens';
-import { isPresent, mergeOptions, parseCookieString } from './utils';
+import { isNil, isPresent, mergeOptions, parseCookieString } from './utils';
 
 @Injectable()
 export class CookieService implements ICookieService {
@@ -37,7 +37,7 @@ export class CookieService implements ICookieService {
    * @returns Raw cookie value.
    */
   get(key: string): string {
-    return this.getAll()[key];
+    return this.getAll()?.[key];
   }
 
   /**
@@ -47,9 +47,9 @@ export class CookieService implements ICookieService {
    * @param key Id to use for lookup.
    * @returns Deserialized cookie value.
    */
-  getObject(key: string): object {
+  getObject(key: string): object | undefined {
     const value = this.get(key);
-    if (!isPresent(value)) {
+    if (isNil(value)) {
       return undefined;
     } else if (value === '') {
       return {};
@@ -63,7 +63,7 @@ export class CookieService implements ICookieService {
    *
    * @returns All cookies
    */
-  getAll(): object {
+  getAll(): CookieDict {
     const cookieString = this.cookieWriterService.readAllAsString();
     return parseCookieString(cookieString);
   }
@@ -76,7 +76,7 @@ export class CookieService implements ICookieService {
    * @param value Raw value to be stored.
    * @param options (Optional) Options object.
    */
-  put(key: string, value: string, options?: CookieOptions) {
+  put(key: string, value: string | undefined, options?: CookieOptions): void {
     const opts = mergeOptions(this.options, options);
     this.cookieWriterService.write(key, value, opts);
   }
@@ -89,7 +89,7 @@ export class CookieService implements ICookieService {
    * @param value Value to be stored.
    * @param options (Optional) Options object.
    */
-  putObject(key: string, value: object, options?: CookieOptions) {
+  putObject(key: string, value: object, options?: CookieOptions): void {
     this.put(key, JSON.stringify(value), options);
   }
 

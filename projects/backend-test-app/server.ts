@@ -32,11 +32,6 @@ export function app() {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.addListener('pipe', lis => {
-      console.log('aaaaa');
-    });
-    console.log('res', res.getHeaders());
-    console.log('req', req.cookies);
     res.render(indexHtml, {
       req,
       res,

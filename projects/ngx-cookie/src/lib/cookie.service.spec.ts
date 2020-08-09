@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CookieOptions } from './cookie.model';
+import { CookieDict, CookieOptions } from './cookie.model';
 import { CookieModule } from './cookie.module';
 
 import { CookieService } from './cookie.service';
@@ -96,7 +96,7 @@ describe('NgxCookieService', () => {
       {key: 'keyO2', value: {keyO2_1: 'valueO2_1', keyO2_2: 'valueO2_2'}},
       {key: 'keyO3', value: {keyO3_1: 'valueO3_1', keyO3_2: 'valueO3_2'}}
     ];
-    const result: any = {};
+    const result: CookieDict = {};
     simpleCookies.forEach(c => {
       result[c.key] = c.value;
       service.put(c.key, c.value);

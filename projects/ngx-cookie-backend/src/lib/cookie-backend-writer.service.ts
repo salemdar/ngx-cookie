@@ -1,7 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { CookieOptions as ExpressCookieOptions, Request, Response } from 'express';
-import { buildCookieString, CookieOptions, ICookieWriterService, isBlank, isEmpty, isNil, isString } from 'ngx-cookie';
+import { buildCookieString, CookieOptions, ICookieWriterService, isEmpty, isNil, isString } from 'ngx-cookie';
 
 
 @Injectable()
@@ -14,7 +14,7 @@ export class CookieBackendWriterService implements ICookieWriterService {
     return this.request?.headers?.cookie || '';
   }
 
-  write(name: string, value: string, options?: CookieOptions): void {
+  write(name: string, value: string | undefined, options?: CookieOptions): void {
     if (!isNil(this.request)) {
       this.request.cookies = buildCookieString(name, value, options);
     }
@@ -23,25 +23,25 @@ export class CookieBackendWriterService implements ICookieWriterService {
     }
   }
 
-  private getOptions(options: CookieOptions): ExpressCookieOptions {
+  private getOptions(options?: CookieOptions): ExpressCookieOptions {
     if (isEmpty(options)) {
       return {};
     }
     return {
-      expires: this.getExpires(options.expires),
-      httpOnly: options.httpOnly,
-      path: options.path,
-      domain: options.domain,
-      secure: options.secure,
-      sameSite: options.sameSite
+      expires: this.getExpires(options?.expires),
+      httpOnly: options?.httpOnly,
+      path: options?.path,
+      domain: options?.domain,
+      secure: options?.secure,
+      sameSite: options?.sameSite
     };
   }
 
-  private getExpires(expires: string | Date): Date {
-    if (isBlank(expires)) {
-      return null;
+  private getExpires(expires?: string | Date): Date | undefined {
+    if (isEmpty(expires)) {
+      return undefined;
     }
-    return isString(expires) ? new Date(expires) : expires;
+    return isString(expires) ? new Date(expires) : expires as Date;
   }
 
 }

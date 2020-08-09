@@ -32,15 +32,19 @@ export interface CookieOptions {
   storeUnencoded?: boolean;
 }
 
+export interface CookieDict {
+  [key: string]: string;
+}
+
 export interface ICookieWriterService {
   readAllAsString(): string;
-  write(name: string, value: string, options?: CookieOptions): void;
+  write(name: string, value: string | undefined, options?: CookieOptions): void;
 }
 
 export interface ICookieService {
   hasKey(key: string): boolean;
   get(key: string): string;
-  getObject(key: string): object | string;
+  getObject(key: string): object | undefined;
   getAll(): object;
   put(key: string, value: string, options?: CookieOptions): void;
   putObject(key: string, value: object, options?: CookieOptions): void;
