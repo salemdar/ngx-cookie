@@ -1,4 +1,4 @@
-# ngx-cookie  ![CI](https://github.com/salemdar/ngx-cookie/workflows/CI/badge.svg) [![npm version](https://img.shields.io/npm/v/ngx-cookie.svg)](https://www.npmjs.com/package/ngx-cookie) [![Downloads](http://img.shields.io/npm/dm/ngx-cookie.svg)](https://npmjs.org/package/ngx-cookie)
+# ngx-cookie  [![CI](https://github.com/salemdar/ngx-cookie/workflows/CI/badge.svg)](https://github.com/salemdar/ngx-cookie/actions?query=workflow%3ACI) [![npm version](https://img.shields.io/npm/v/ngx-cookie.svg)](https://www.npmjs.com/package/ngx-cookie) [![Downloads](http://img.shields.io/npm/dm/ngx-cookie.svg)](https://npmjs.org/package/ngx-cookie)
 
 
 > Implementation of Angular 1.x $cookies service to Angular
