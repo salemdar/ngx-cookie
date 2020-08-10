@@ -59,7 +59,7 @@ import { CookieService } from 'ngx-cookie';
 
 @Component({
     selector: 'my-very-cool-app',
-    template: '<h1>My Angular2 App with Cookies</h1>'
+    template: '<h1>My Angular App with Cookies</h1>'
 })
 
 export class AppComponent { 
