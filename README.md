@@ -88,10 +88,10 @@ yarn add ngx-cookie-backend
 
 Then edit `app.server.module.ts` and add `CookieBackendModule.forRoot()` to imports:
 
-```
+```typescript
 /* app.server.module.ts */
 
-import { CookieService, CookieBackendService } from 'ngx-cookie';
+import { CookieBackendModule } from 'ngx-cookie';
 
 @NgModule({
   imports: [
@@ -105,7 +105,7 @@ export class AppServerModule {}
 ```
 Next, we need to make providers for the `'REQUEST'` and `'RESPONSE'` objects created by the expressjs server during SSR. To do this, edit `server.ts` to create providers for `'REQUEST'` AND `'RESPONSE'`.
 
-```
+```typescript
 /* server.ts */
 // All regular routes use the Universal engine
 server.get('*', (req, res) => {
@@ -221,4 +221,3 @@ Options object should be a type of `CookieOptions` interface. The object may hav
 - **sameSite** - {"Lax"|"Strict"|"None"} - Designates cookie for first party (Lax|Strict) or third party contexts.
 - **httpOnly** - {boolean} - If `true`, then the cookie will be set with the `HttpOnly` flag, and will only be accessible from the remote server. Helps to prevent against XSS attacks.
 - **storeUnencoded** - {boolean} - If `true`, then the cookie value will not be encoded and will be stored as provided. 
-
