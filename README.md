@@ -91,7 +91,7 @@ Then edit `app.server.module.ts` and add `CookieBackendModule.forRoot()` to impo
 ```typescript
 /* app.server.module.ts */
 
-import { CookieBackendService } from 'ngx-cookie';
+import { CookieBackendModule } from 'ngx-cookie';
 
 @NgModule({
   imports: [
@@ -221,4 +221,3 @@ Options object should be a type of `CookieOptions` interface. The object may hav
 - **sameSite** - {"Lax"|"Strict"|"None"} - Designates cookie for first party (Lax|Strict) or third party contexts.
 - **httpOnly** - {boolean} - If `true`, then the cookie will be set with the `HttpOnly` flag, and will only be accessible from the remote server. Helps to prevent against XSS attacks.
 - **storeUnencoded** - {boolean} - If `true`, then the cookie value will not be encoded and will be stored as provided. 
-
