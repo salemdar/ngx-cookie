@@ -88,10 +88,10 @@ yarn add ngx-cookie-backend
 
 Then edit `app.server.module.ts` and add `CookieBackendModule.forRoot()` to imports:
 
-```
+```typescript
 /* app.server.module.ts */
 
-import { CookieService, CookieBackendService } from 'ngx-cookie';
+import { CookieBackendService } from 'ngx-cookie';
 
 @NgModule({
   imports: [
@@ -105,7 +105,7 @@ export class AppServerModule {}
 ```
 Next, we need to make providers for the `'REQUEST'` and `'RESPONSE'` objects created by the expressjs server during SSR. To do this, edit `server.ts` to create providers for `'REQUEST'` AND `'RESPONSE'`.
 
-```
+```typescript
 /* server.ts */
 // All regular routes use the Universal engine
 server.get('*', (req, res) => {
