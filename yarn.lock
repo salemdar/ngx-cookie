@@ -1098,19 +1098,19 @@
     rxjs "^6.5.5"
     tree-kill "^1.2.1"
 
-"@nguniversal/common@10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-10.0.1.tgz#964b8cc7745db8f6c3c9f39bbaee401c6354fa4b"
-  integrity sha512-don1zW+ZOBQS1PTLg006L+Uqwk9fIVnq595196XpVFn/7x5h5vCQRElZsu9LdzwFPu5b1Mjz1/3X/D4Q4SFewg==
+"@nguniversal/common@10.0.2":
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-10.0.2.tgz#722a19fb72bbce8c8c43e21a99ea9c749509a558"
+  integrity sha512-qBwt7rsulLjXh0tAmHbcwdvfpwbawUiLZ9oG3Nu1CzvaWMLV7vbLMX4AejXNWXv7v3MdtSMT8RVtQG8GG6IwNw==
   dependencies:
     tslib "^2.0.0"
 
 "@nguniversal/express-engine@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-10.0.1.tgz#ed2a37a382598b1f798470c2ed96b9f48d354806"
-  integrity sha512-Ie4q6WTMTV6iMaEofG1UO8xagCPUNTfIgAwuR+dcPCc5c8MYOKRi6EQ2X9fltUv0X92PFjI4dxi/DPa6f6AIeg==
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-10.0.2.tgz#78e26fd5c084dfe94d2fa653fadecfb094ca7b9a"
+  integrity sha512-Ft7a+t/+huPF55UspcKy8wNnh/2G4kjVINLzsbCGnMtjs9WrFjm4VKX0D1qn77Sy/2l1Cun+J//2G7ZQBfsoKw==
   dependencies:
-    "@nguniversal/common" "10.0.1"
+    "@nguniversal/common" "10.0.2"
     tslib "^2.0.0"
 
 "@nodelib/fs.scandir@2.1.3":
