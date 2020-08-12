@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@angular-devkit/architect@0.1000.5", "@angular-devkit/architect@^0.1000.0":
+"@angular-devkit/architect@0.1000.5", "@angular-devkit/architect@^0.1000.5":
   version "0.1000.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1000.5.tgz#39488b92a366e49d50dda0af4eee3b0bb9425ec4"
   integrity sha512-BhNqB7fmmrDQwxoJ3zdw5FslFD+nYGgMTiC48ERVYJVuN3BK6xtt2OGA7vho3eJ13OE5cPGUi8crQDRROgxxQg==
@@ -108,7 +108,7 @@
     "@angular-devkit/core" "10.0.5"
     rxjs "6.5.5"
 
-"@angular-devkit/core@10.0.5", "@angular-devkit/core@^10.0.0":
+"@angular-devkit/core@10.0.5", "@angular-devkit/core@^10.0.5":
   version "10.0.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.0.5.tgz#ad747edbf3344a87f86acb71bdeaac0380538c04"
   integrity sha512-ZaF1EYniIo+yRLvvaKnLrjYCdKeg2U3YtbA932M2AIfjgfFv/9mnAbH4jmZsBZhCstxZPz+ItwJesdR20h4Z1Q==
@@ -1086,12 +1086,12 @@
     webpack-sources "1.4.3"
 
 "@nguniversal/builders@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@nguniversal/builders/-/builders-10.0.1.tgz#2fa18cde9b9beb7e1f828d7be76d98887365aa6b"
-  integrity sha512-clPh/SNv1ICpIJWeCh2w51EI59X6uAPIYL7po8JeS9hFYjSGmI0hrwt2r4EYblAphwLJuq3pZyfd0HcKe3pJeQ==
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@nguniversal/builders/-/builders-10.0.2.tgz#1f0c784518d218e8e96b1cdc8e1adc49dd7acb2b"
+  integrity sha512-Ohm+W4ujBP3tlU0ShYFM6w4TkYz3c9dqTmLvrk3rtjud0vyEx8fLYNy5ols+KEPAtU+azQPq0ZxL9elmVof3ag==
   dependencies:
-    "@angular-devkit/architect" "^0.1000.0"
-    "@angular-devkit/core" "^10.0.0"
+    "@angular-devkit/architect" "^0.1000.5"
+    "@angular-devkit/core" "^10.0.5"
     browser-sync "^2.26.7"
     guess-parser "^0.4.12"
     http-proxy-middleware "^1.0.0"
