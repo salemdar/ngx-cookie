@@ -1,6 +1,6 @@
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { APP_ID, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { CookieService } from 'ngx-cookie';
+import { CookieDict, CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   objectCookieValue?: object;
   hasCookieTrue!: boolean;
   hasCookieFalse!: boolean;
+  allCookies: CookieDict = {};
 
   private key = 'myCookie';
   private objectKey = 'myObjectCookie';
@@ -27,7 +28,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setCookies();
+    if (isPlatformServer(this.platformId)) {
+      // only set cookies on server to check if SSR works. Turn off javascript to see if getter works on ssr also
+      this.setCookies();
+    }
     this.getCookies();
   }
 
@@ -41,5 +45,6 @@ export class AppComponent implements OnInit {
     this.objectCookieValue = this.cookieService.getObject(this.objectKey);
     this.hasCookieTrue = this.cookieService.hasKey(this.key) && this.cookieService.hasKey(this.objectKey);
     this.hasCookieFalse = this.cookieService.hasKey('nonExistentKey');
+    this.allCookies = this.cookieService.getAll();
   }
 }

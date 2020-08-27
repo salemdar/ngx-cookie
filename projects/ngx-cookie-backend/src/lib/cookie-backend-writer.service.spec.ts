@@ -1,25 +1,26 @@
 import { TestBed } from '@angular/core/testing';
-import { CookieModule } from '../../../ngx-cookie/src/lib/cookie.module';
-import { CookieService } from '../../../ngx-cookie/src/lib/cookie.service';
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
+import { COOKIE_WRITER, ICookieWriterService } from 'ngx-cookie';
+import { CookieBackendModule } from 'ngx-cookie-backend';
 
 describe('CookieBackendWriterService', () => {
-  let service: CookieService;
+  let service: ICookieWriterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        CookieModule.forRoot()
-      ]
+        CookieBackendModule.forRoot()
+      ],
+      providers: [{provide: REQUEST, useValue: {}}, {provide: RESPONSE, useValue: {}}]
     });
-    service = TestBed.inject(CookieService);
+    service = TestBed.inject(COOKIE_WRITER);
   });
 
   afterEach(() => {
-    service.removeAll();
   });
 
-  it('should be true', () => {
-    expect(true).toBeTruthy();
+  it('should be defined', () => {
+    expect(service).toBeDefined();
   });
 
 });
