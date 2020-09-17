@@ -2,12 +2,20 @@
 # yarn lockfile v1
 
 
-"@angular-devkit/architect@0.1001.1", "@angular-devkit/architect@^0.1001.0":
+"@angular-devkit/architect@0.1001.1":
   version "0.1001.1"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1001.1.tgz#ec17baf535160199dd7497a931ea60b185d82bfc"
   integrity sha512-2jRO7L/k9gNxHVJxPoUMVvtf/KzsSXNT7akbAbb8CkBJxjx3NC3Y9NssPD9E78kyiXogO6IvkwyalBGrWvOPBQ==
   dependencies:
     "@angular-devkit/core" "10.1.1"
+    rxjs "6.6.2"
+
+"@angular-devkit/architect@0.1001.2", "@angular-devkit/architect@^0.1001.0":
+  version "0.1001.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1001.2.tgz#9f4d1f95e85a2b85d26bf8f5c06909552d703a02"
+  integrity sha512-05o12amjZ8NNIFehKm/lFYf12xvCclC7V5tGl/9+V7g/3pQqakwAjCysgb9T+ETffhmKhMnE8XdAJZqF7YrDcw==
+  dependencies:
+    "@angular-devkit/core" "10.1.2"
     rxjs "6.6.2"
 
 "@angular-devkit/build-angular@~0.1001.1":
@@ -82,11 +90,11 @@
     worker-plugin "5.0.0"
 
 "@angular-devkit/build-ng-packagr@~0.1001.1":
-  version "0.1001.1"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-ng-packagr/-/build-ng-packagr-0.1001.1.tgz#c200d780e8071ae42c481f525c4a5540bff845b5"
-  integrity sha512-KX5GuQvQypUpR+qF9qHzNC49GrHx6wsu+AoIily72xTU7+gri0pO2KxQ6aSQiGRENHtvfKYOxMUoeZUvlD2sBA==
+  version "0.1001.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-ng-packagr/-/build-ng-packagr-0.1001.2.tgz#96ab007edc95487df6382a7161e10a324306dd09"
+  integrity sha512-tDGcrLA7z7/teuKlrhKL+1OgImLdY8wVv5OpFb219gG/t0mRy27xHzTd1YxulOjkaSfDUNIi859mnySv8knVsw==
   dependencies:
-    "@angular-devkit/architect" "0.1001.1"
+    "@angular-devkit/architect" "0.1001.2"
     rxjs "6.6.2"
 
 "@angular-devkit/build-optimizer@0.1001.1":
@@ -113,6 +121,17 @@
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.1.1.tgz#96e4f7af4ef17810f6ff87786c83841f466b4122"
   integrity sha512-0ZmknL5I177JO+iOz2gDSqHtPK3zGGwyz4ix9IIu172eFRX53sdbl1vDiMikovyvZWx5fXqU3Vazf7CUeGA28w==
+  dependencies:
+    ajv "6.12.4"
+    fast-json-stable-stringify "2.1.0"
+    magic-string "0.25.7"
+    rxjs "6.6.2"
+    source-map "0.7.3"
+
+"@angular-devkit/core@10.1.2":
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.1.2.tgz#3deb429596a6127c5b68bbc3bbd49cf00aeac966"
+  integrity sha512-LMxesiCuXRe3UzPdRouXsC1W73/q6rVtACVoD5GdzmmnZ7cRh7oiwonqT0lEXIKQikMsZUasUOXHD2HoKV6BoA==
   dependencies:
     ajv "6.12.4"
     fast-json-stable-stringify "2.1.0"
