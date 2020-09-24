@@ -7,14 +7,10 @@ const COOKIE_SEPARATOR = '; ';
 
 @Injectable()
 export class CookieBackendWriterService implements ICookieWriterService {
-  constructor(
-    @Optional() @Inject(REQUEST) private request: Request,
-    @Optional() @Inject(RESPONSE) private response: Response,
-  ) {
-  }
+  constructor(@Optional() @Inject(REQUEST) private request: Request,
+              @Optional() @Inject(RESPONSE) private response: Response) {}
 
   readAllAsString(): string {
-
     const requestHeadersCookies = this.request?.headers?.cookie;
     const cookiesFromRequest: string[] = requestHeadersCookies ? requestHeadersCookies.split(COOKIE_SEPARATOR) : [];
 
@@ -25,12 +21,10 @@ export class CookieBackendWriterService implements ICookieWriterService {
   }
 
   private getNormalizedResponseCookies(): string[] {
-    const responseCookies: string[] | string = (this.response.getHeader('Set-Cookie') as any) ?? '';
+    const responseCookies = (this.response.getHeader('Set-Cookie') as string | string[]) ?? '';
 
     const addedCookies: string[] =
-      responseCookies instanceof Array
-        ? responseCookies
-        : [responseCookies];
+      Array.isArray(responseCookies) ? responseCookies : [responseCookies];
 
     return addedCookies.map(cookieEntry => cookieEntry.split('; ')[0]);
   }
@@ -66,7 +60,7 @@ export class CookieBackendWriterService implements ICookieWriterService {
       path: options?.path,
       domain: options?.domain,
       secure: options?.secure,
-      sameSite: options?.sameSite,
+      sameSite: options?.sameSite
     };
   }
 
