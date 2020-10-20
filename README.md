@@ -91,7 +91,7 @@ Then edit `app.server.module.ts` and add `CookieBackendModule.forRoot()` to impo
 ```typescript
 /* app.server.module.ts */
 
-import { CookieBackendModule } from 'ngx-cookie';
+import { CookieBackendModule } from 'ngx-cookie-backend';
 
 @NgModule({
   imports: [
