@@ -1,23 +1,50 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { CookieOptions as ExpressCookieOptions, Request, Response } from 'express';
-import { buildCookieString, CookieOptions, ICookieWriterService, isEmpty, isNil, isString } from 'ngx-cookie';
+import { CookieOptions, ICookieWriterService, isEmpty, isNil, isString } from 'ngx-cookie';
 
+const COOKIE_SEPARATOR = '; ';
 
 @Injectable()
 export class CookieBackendWriterService implements ICookieWriterService {
-
   constructor(@Optional() @Inject(REQUEST) private request: Request,
               @Optional() @Inject(RESPONSE) private response: Response) {}
 
   readAllAsString(): string {
-    return this.request?.headers?.cookie || '';
+    const requestHeadersCookies = this.request?.headers?.cookie;
+    const cookiesFromRequest: string[] = requestHeadersCookies ? requestHeadersCookies.split(COOKIE_SEPARATOR) : [];
+
+    const addedCookies: string[] = this.getNormalizedResponseCookies();
+
+    const allCookies = this.latestUniqueCookieValues(cookiesFromRequest, addedCookies);
+    return allCookies.join(COOKIE_SEPARATOR);
+  }
+
+  private getNormalizedResponseCookies(): string[] {
+    const responseCookies = (this.response.getHeader('Set-Cookie') as string | string[]) ?? '';
+
+    const addedCookies: string[] =
+      Array.isArray(responseCookies) ? responseCookies : [responseCookies];
+
+    return addedCookies.map(cookieEntry => cookieEntry.split('; ')[0]);
+  }
+
+  private latestUniqueCookieValues(oldCookies: string[], newerCookies: string[]): string[] {
+    const cookiesMap = new Map<string, string>();
+
+    const oldAndNewCookies: string[] = [...oldCookies, ...newerCookies];
+    oldAndNewCookies
+      .filter(value => value)
+      .map(cookie => cookie.split('='))
+      .forEach(([key, value]) => cookiesMap.set(key, value));
+
+    const result: string[] = [];
+    cookiesMap.forEach((value, key) => result.push(`${key}=${value}`));
+
+    return result;
   }
 
   write(name: string, value: string | undefined, options?: CookieOptions): void {
-    if (!isNil(this.request)) {
-      this.request.cookies = buildCookieString(name, value, options);
-    }
     if (!isNil(this.response)) {
       this.response.cookie(name, value, this.getOptions(options));
     }
@@ -41,7 +68,6 @@ export class CookieBackendWriterService implements ICookieWriterService {
     if (isEmpty(expires)) {
       return undefined;
     }
-    return isString(expires) ? new Date(expires) : expires as Date;
+    return isString(expires) ? new Date(expires as string) : (expires as Date);
   }
-
 }
