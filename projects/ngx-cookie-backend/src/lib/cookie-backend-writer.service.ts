@@ -13,34 +13,26 @@ export class CookieBackendWriterService implements ICookieWriterService {
   readAllAsString(): string {
     const requestHeadersCookies = this.request?.headers?.cookie;
     const cookiesFromRequest: string[] = requestHeadersCookies ? requestHeadersCookies.split(COOKIE_SEPARATOR) : [];
-
     const addedCookies: string[] = this.getNormalizedResponseCookies();
-
     const allCookies = this.latestUniqueCookieValues(cookiesFromRequest, addedCookies);
     return allCookies.join(COOKIE_SEPARATOR);
   }
 
   private getNormalizedResponseCookies(): string[] {
     const responseCookies = (this.response.getHeader('Set-Cookie') as string | string[]) ?? '';
-
-    const addedCookies: string[] =
-      Array.isArray(responseCookies) ? responseCookies : [responseCookies];
-
+    const addedCookies: string[] = Array.isArray(responseCookies) ? responseCookies : [responseCookies];
     return addedCookies.map(cookieEntry => cookieEntry.split('; ')[0]);
   }
 
   private latestUniqueCookieValues(oldCookies: string[], newerCookies: string[]): string[] {
     const cookiesMap = new Map<string, string>();
-
     const oldAndNewCookies: string[] = [...oldCookies, ...newerCookies];
     oldAndNewCookies
       .filter(value => value)
       .map(cookie => cookie.split('='))
       .forEach(([key, value]) => cookiesMap.set(key, value));
-
     const result: string[] = [];
     cookiesMap.forEach((value, key) => result.push(`${key}=${value}`));
-
     return result;
   }
 
