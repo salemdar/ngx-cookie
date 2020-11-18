@@ -1358,9 +1358,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*", "@types/node@^14.11.11":
-  version "14.11.11"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.11.11.tgz#359ea52236b5ccc04a71d4001c8467178a9d3699"
-  integrity sha512-UcaAZrL8uO5GNS+NLxkYg1RiOMgdLxCXGqs+TTupltXN8rTvUEKTOpqCV3tlcAIZJXzcBQajzmjdrvuPvnuMUw==
+  version "14.14.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.8.tgz#2127bd81949a95c8b7d3240f3254352d72563aec"
+  integrity sha512-z/5Yd59dCKI5kbxauAJgw6dLPzW+TNOItNE00PkpzNwUIEwdj/Lsqwq94H5DdYBX7C13aRA0CY32BK76+neEUA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -7049,7 +7049,7 @@ path-is-absolute@^1.0.0:
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
 
-path-is-inside@^1.0.2:
+path-is-inside@^1.0.1, path-is-inside@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-is-inside/-/path-is-inside-1.0.2.tgz#365417dede44430d1c11af61027facf074bdfc53"
   integrity sha1-NlQX3t5EQw0cEa9hAn+s8HS9/FM=
