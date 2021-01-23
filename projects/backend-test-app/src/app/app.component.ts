@@ -7,7 +7,6 @@ import { CookieDict, CookieService } from 'ngx-cookie';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  title = 'backend-test-app';
   cookieValue!: string;
   objectCookieValue?: object;
   hasCookieTrue!: boolean;
@@ -21,9 +20,9 @@ export class AppComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: object,
     @Inject(APP_ID) private appId: string,
     private cookieService: CookieService) {
-    const platform = isPlatformBrowser(platformId) ?
-      'in the browser' : 'on the server';
-    console.log(`Running ${platform} with appId=====${appId}`);
+    console.log(`Running in the ${platformId} with appId=====${appId}`);
+    console.log(isPlatformServer(platformId));
+    console.log(platformId);
   }
 
   ngOnInit(): void {

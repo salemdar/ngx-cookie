@@ -13,7 +13,12 @@ describe('workspace-project backend-test-app', () => {
     page = new AppPage();
   });
 
-  it('should set and get cookies', () => {
+  /**
+   * TODO angular uses "backend-test-app:serve" as devServerTarget.
+   * This causes test app to be served on browser.
+   * It actually needs to use "backend-test-app:serve-ssr". But that does not work.
+   */
+  xit('should set and get cookies', () => {
     page.navigateTo();
     // element(by.id('setCookieButton')).click();
     // element(by.id('getCookieButton')).click();
