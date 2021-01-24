@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f34a6ed308934c168e7b31c99d2adb75)](https://app.codacy.com/gh/salemdar/ngx-cookie?utm_source=github.com&utm_medium=referral&utm_content=salemdar/ngx-cookie&utm_campaign=Badge_Grade)
 # ngx-cookie  [![CI](https://github.com/salemdar/ngx-cookie/workflows/CI/badge.svg)](https://github.com/salemdar/ngx-cookie/actions?query=workflow%3ACI) [![npm version](https://img.shields.io/npm/v/ngx-cookie.svg)](https://www.npmjs.com/package/ngx-cookie) [![Downloads](http://img.shields.io/npm/dm/ngx-cookie.svg)](https://npmjs.org/package/ngx-cookie)
 
 
