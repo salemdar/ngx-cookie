@@ -18,7 +18,7 @@ describe('workspace-project backend-test-app', () => {
    * This causes test app to be served on browser.
    * It actually needs to use "backend-test-app:serve-ssr". But that does not work.
    */
-  it('should set and get cookies', () => {
+  xit('should set and get cookies', () => {
     page.navigateTo();
     // element(by.id('setCookieButton')).click();
     // element(by.id('getCookieButton')).click();
