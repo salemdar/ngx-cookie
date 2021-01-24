@@ -8,7 +8,7 @@
     "build": "ng build ngx-cookie --prod && ng build ngx-cookie-backend --prod",
     "test": "ng test --watch=false",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "e2e": "ng e2e test-app",
     "dev:ssr": "ng run backend-test-app:serve-ssr",
     "serve:ssr": "node dist/backend-test-app/server/main.js",
     "build:ssr": "ng build backend-test-app --prod && ng run backend-test-app:server:production",
