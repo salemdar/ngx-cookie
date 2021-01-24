@@ -21,8 +21,6 @@ export class AppComponent implements OnInit {
     @Inject(APP_ID) private appId: string,
     private cookieService: CookieService) {
     console.log(`Running in the ${platformId} with appId=====${appId}`);
-    console.log(isPlatformServer(platformId));
-    console.log(platformId);
   }
 
   ngOnInit(): void {
