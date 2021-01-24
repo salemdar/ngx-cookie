@@ -17,7 +17,7 @@ exports.config = {
     chromeOptions: {
       args: [
         '--disable-translate',
-        // '--headless',
+        '--headless',
         '--disable-gpu',
         '--disable-extensions'
       ]

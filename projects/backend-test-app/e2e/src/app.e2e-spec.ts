@@ -18,15 +18,15 @@ describe('workspace-project backend-test-app', () => {
    * This causes test app to be served on browser.
    * It actually needs to use "backend-test-app:serve-ssr". But that does not work.
    */
-  // it('should set and get cookies', () => {
-  //   page.navigateTo();
-  //   // element(by.id('setCookieButton')).click();
-  //   // element(by.id('getCookieButton')).click();
-  //   expect(element(by.id('cookieValue')).getText()).toBe('myValue');
-  //   expect(element(by.id('objectCookieValue')).getText()).toBe(objectCookieValue);
-  //   expect(element(by.id('hasCookieTrue')).getText()).toBe('true');
-  //   expect(element(by.id('hasCookieFalse')).getText()).toBe('false');
-  // });
+  it('should set and get cookies', () => {
+    page.navigateTo();
+    // element(by.id('setCookieButton')).click();
+    // element(by.id('getCookieButton')).click();
+    expect(element(by.id('cookieValue')).getText()).toBe('myValue');
+    expect(element(by.id('objectCookieValue')).getText()).toBe(objectCookieValue);
+    expect(element(by.id('hasCookieTrue')).getText()).toBe('true');
+    expect(element(by.id('hasCookieFalse')).getText()).toBe('false');
+  });
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
