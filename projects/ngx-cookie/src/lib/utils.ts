@@ -108,7 +108,7 @@ export function buildCookieString(name: string, value: string | undefined, optio
   // - 4096 bytes per cookie
   const cookieLength = str.length + 1;
   if (cookieLength > 4096) {
-    console.log(`Cookie \'${name}\' possibly not set or overflowed because it was too large (${cookieLength} > 4096 bytes)!`);
+    console.log('Cookie \'' + name + '\' possibly not set or overflowed because it was too large (' + cookieLength + ' > 4096 bytes)!');
   }
   return str;
 }
