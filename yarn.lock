@@ -6548,9 +6548,9 @@ next-tick@~1.0.0:
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
 ng-packagr@^11.1.2:
-  version "11.1.2"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-11.1.2.tgz#d9e9439911d57603d80c4ea33cb31418ce9a36c1"
-  integrity sha512-Ud6DJC4eiiQHDUi3BegW50gJfvUfbXTu9fqR/Hhj0s42PLDOfGzbIAFhz8AhiDNdzptZTsinITvESuKj12CIAA==
+  version "11.1.4"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-11.1.4.tgz#c0d68ea8c781222505b09cc037d0ea19b61e34fc"
+  integrity sha512-TBequCsduCwDYMjTLRLvqTrsJYC4xZzQq9lRlYHX79cmD1UBvrYJme5xtc3E0Qor/dNiFq8u4LvuPpyklKj3uw==
   dependencies:
     "@rollup/plugin-commonjs" "^17.0.0"
     "@rollup/plugin-json" "^4.1.0"
