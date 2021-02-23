@@ -219,10 +219,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/language-service@~11.1.0":
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-11.1.0.tgz#d5a435f10ee8b79ceaf32352baaa104c089171c7"
-  integrity sha512-7NQcwNHgUGOdqQsyp1Xw/WFbYvC4WA+Et2DJJvkitmg2ejndtm45FALUu1Z2X6bbKzdJOuNGU5vNh1ZJ/IyGRQ==
+"@angular/language-service@~11.2.2":
+  version "11.2.2"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-11.2.2.tgz#5b96c4abe8a76d048f48320b40adb91e07682d35"
+  integrity sha512-H09s5pivJq8lip206NrNJ0cXLge9CfthtT3tY+OGXn5Xiyvjxs+dOkVytoGauHE3mdge/Wn/rxoGmm/oYKejNQ==
 
 "@angular/platform-browser-dynamic@~11.1.0":
   version "11.1.0"
