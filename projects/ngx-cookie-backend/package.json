@@ -1,6 +1,6 @@
 {
   "name": "ngx-cookie-backend",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "repository": {
     "type": "git",
@@ -32,7 +32,7 @@
     "@angular/common": ">9.0.0",
     "@angular/core": ">9.0.0",
     "@nguniversal/express-engine": ">9.0.0",
-    "ngx-cookie": "5.0.0"
+    "ngx-cookie": "5.0.2"
 },
   "dependencies": {
     "tslib": "^2.0.0"
