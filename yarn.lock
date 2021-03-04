@@ -223,9 +223,9 @@
     tslib "^2.0.0"
 
 "@angular/language-service@~11.2.3":
-  version "11.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-11.2.3.tgz#345217f9bc9fba29567d89504f861d2c849af594"
-  integrity sha512-6PDInFDTQ2oP1mzD2W4fR5/pPFqbHRikXsNbIKnejeAxzcyoPQ9zxIKl7mmrS4N+8evtZUYLzR5AtHukvjYSpA==
+  version "11.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-11.2.4.tgz#518c843f4c742fca9260018cce3d69de7f6c63a2"
+  integrity sha512-WqQFCdOaMzDIBb6PeqHoIEzHdXj5pwOZY9bW3e102SXzn15RhFxHNKFpzB/vHkgZzsau+9FWmVQWEiqkTXBj+w==
 
 "@angular/platform-browser-dynamic@~11.2.3":
   version "11.2.3"
