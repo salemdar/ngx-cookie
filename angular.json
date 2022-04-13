@@ -62,7 +62,6 @@
             "main": "projects/test-app/src/main.ts",
             "polyfills": "projects/test-app/src/polyfills.ts",
             "tsConfig": "projects/test-app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/test-app/src/favicon.ico",
               "projects/test-app/src/assets"
@@ -70,7 +69,13 @@
             "styles": [
               "projects/test-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -100,7 +105,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -222,7 +228,6 @@
             "main": "projects/backend-test-app/src/main.ts",
             "polyfills": "projects/backend-test-app/src/polyfills.ts",
             "tsConfig": "projects/backend-test-app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/backend-test-app/src/favicon.ico",
               "projects/backend-test-app/src/assets"
@@ -230,7 +235,13 @@
             "styles": [
               "projects/backend-test-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -260,7 +271,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -326,7 +338,9 @@
           "options": {
             "outputPath": "dist/backend-test-app/server",
             "main": "projects/backend-test-app/server.ts",
-            "tsConfig": "projects/backend-test-app/tsconfig.server.json"
+            "tsConfig": "projects/backend-test-app/tsconfig.server.json",
+            "sourceMap": true,
+            "optimization": false
           },
           "configurations": {
             "production": {
@@ -340,7 +354,8 @@
               "sourceMap": false,
               "optimization": true
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
