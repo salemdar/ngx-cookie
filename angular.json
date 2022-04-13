@@ -140,10 +140,13 @@
           }
         },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "protractorConfig": "projects/test-app/e2e/protractor.conf.js",
-            "devServerTarget": "test-app:serve"
+            "devServerTarget": "test-app:serve",
+            "watch": false,
+            "headless": true,
+            "browser": "chrome",
+            "configFile": "projects/test-app/cypress.json"
           },
           "configurations": {
             "production": {
@@ -158,6 +161,27 @@
               "projects/test-app/**/*.ts",
               "projects/test-app/**/*.html"
             ]
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "test-app:serve",
+            "browser": "chrome",
+            "configFile": "projects/test-app/cypress.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-app:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false,
+            "configFile": "projects/test-app/cypress.json"
           }
         }
       }
@@ -299,10 +323,13 @@
           }
         },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "protractorConfig": "projects/backend-test-app/e2e/protractor.conf.js",
-            "devServerTarget": "backend-test-app:serve"
+            "devServerTarget": "backend-test-app:serve",
+            "watch": false,
+            "headless": true,
+            "browser": "chrome",
+            "configFile": "projects/test-app/cypress.json"
           },
           "configurations": {
             "production": {
@@ -367,6 +394,27 @@
               "projects/backend-test-app/**/*.ts",
               "projects/backend-test-app/**/*.html"
             ]
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "backend-test-app:serve",
+            "browser": "chrome",
+            "configFile": "projects/backend-test-app/cypress.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "backend-test-app:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false,
+            "configFile": "projects/backend-test-app/cypress.json"
           }
         }
       }

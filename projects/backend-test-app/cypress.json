@@ -1,0 +1,5 @@
+{
+  "integrationFolder": "projects/backend-test-app/cypress/integration",
+  "supportFile": "projects/backend-test-app/cypress/support/index.ts",
+  "baseUrl": "http://localhost:4200"
+}
