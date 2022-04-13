@@ -1,22 +1,22 @@
 import { CookieDict, CookieOptions } from './cookie.model';
 
-// tslint:disable-next-line:no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isNil(obj: any): boolean {
   return obj === undefined || obj === null;
 }
 
-// tslint:disable-next-line:no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isPresent(obj: any): boolean {
   return !isNil(obj);
 }
 
-// tslint:disable-next-line:no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isString(obj: any): obj is string {
   return typeof obj === 'string';
 }
 
 // noinspection JSUnusedGlobalSymbols
-// tslint:disable-next-line:no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isEmpty(value: any): boolean {
   if (isNil(value)) {
     return true;

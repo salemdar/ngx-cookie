@@ -28,6 +28,15 @@
             "tsConfig": "projects/ngx-cookie/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-cookie/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-cookie/**/*.ts",
+              "projects/ngx-cookie/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -141,6 +150,15 @@
               "devServerTarget": "test-app:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/test-app/**/*.ts",
+              "projects/test-app/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -168,6 +186,15 @@
             "main": "projects/ngx-cookie-backend/src/test.ts",
             "tsConfig": "projects/ngx-cookie-backend/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-cookie-backend/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-cookie-backend/**/*.ts",
+              "projects/ngx-cookie-backend/**/*.html"
+            ]
           }
         }
       }
@@ -332,8 +359,21 @@
           "configurations": {
             "production": {}
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/backend-test-app/**/*.ts",
+              "projects/backend-test-app/**/*.html"
+            ]
+          }
         }
       }
-    }},
-  "defaultProject": "ngx-cookie"
+    }
+  },
+  "defaultProject": "ngx-cookie",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

@@ -1,5 +1,6 @@
-import { AppPage } from './app.po';
 import { browser, by, element, logging } from 'protractor';
+
+import { AppPage } from './app.po';
 
 const objectCookieValue = '{\n' +
   '  "myKey": "myValue"\n' +
