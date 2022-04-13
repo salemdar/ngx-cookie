@@ -28,18 +28,6 @@
             "tsConfig": "projects/ngx-cookie/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-cookie/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-cookie/tsconfig.lib.json",
-              "projects/ngx-cookie/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -142,19 +130,6 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/test-app/tsconfig.app.json",
-              "projects/test-app/tsconfig.spec.json",
-              "projects/test-app/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -193,18 +168,6 @@
             "main": "projects/ngx-cookie-backend/src/test.ts",
             "tsConfig": "projects/ngx-cookie-backend/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-cookie-backend/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-cookie-backend/tsconfig.lib.json",
-              "projects/ngx-cookie-backend/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
@@ -306,19 +269,6 @@
               "projects/backend-test-app/src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/backend-test-app/tsconfig.app.json",
-              "projects/backend-test-app/tsconfig.spec.json",
-              "projects/backend-test-app/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
