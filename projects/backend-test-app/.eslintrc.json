@@ -12,7 +12,7 @@
         "project": [
           "projects/backend-test-app/tsconfig.app.json",
           "projects/backend-test-app/tsconfig.spec.json",
-          "projects/backend-test-app/e2e/tsconfig.json"
+          "projects/backend-test-app/cypress/tsconfig.json"
         ],
         "createDefaultProgram": true
       },
