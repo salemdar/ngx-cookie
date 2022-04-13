@@ -29,8 +29,8 @@
     "url": "https://github.com/salemdar/ngx-cookie/issues"
   },
   "peerDependencies": {
-    "@angular/common": ">9.0.0",
-    "@angular/core": ">9.0.0"
+    "@angular/common": ">=12.0.0",
+    "@angular/core": ">=12.0.0"
 },
   "dependencies": {
     "tslib": "^2.0.0"
