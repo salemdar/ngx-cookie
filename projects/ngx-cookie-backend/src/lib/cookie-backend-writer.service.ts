@@ -19,7 +19,7 @@ export class CookieBackendWriterService implements ICookieWriterService {
   }
 
   private getNormalizedResponseCookies(): string[] {
-    const responseCookies = (this.response.getHeader('Set-Cookie') as string | string[]) ?? '';
+    const responseCookies = (this.response?.getHeader('Set-Cookie') as string | string[]) ?? '';
     const addedCookies: string[] = Array.isArray(responseCookies) ? responseCookies : [responseCookies];
     return addedCookies.map(cookieEntry => cookieEntry.split('; ')[0]);
   }
