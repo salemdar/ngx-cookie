@@ -30,14 +30,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-cookie/tsconfig.lib.json",
-              "projects/ngx-cookie/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-cookie/**/*.ts",
+              "projects/ngx-cookie/**/*.html"
             ]
           }
         }
@@ -62,7 +59,6 @@
             "main": "projects/test-app/src/main.ts",
             "polyfills": "projects/test-app/src/polyfills.ts",
             "tsConfig": "projects/test-app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/test-app/src/favicon.ico",
               "projects/test-app/src/assets"
@@ -70,7 +66,13 @@
             "styles": [
               "projects/test-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -100,7 +102,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -136,29 +139,49 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/test-app/tsconfig.app.json",
-              "projects/test-app/tsconfig.spec.json",
-              "projects/test-app/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "protractorConfig": "projects/test-app/e2e/protractor.conf.js",
-            "devServerTarget": "test-app:serve"
+            "devServerTarget": "test-app:serve",
+            "watch": false,
+            "headless": true,
+            "browser": "chrome",
+            "configFile": "projects/test-app/cypress.json"
           },
           "configurations": {
             "production": {
               "devServerTarget": "test-app:serve:production"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/test-app/**/*.ts",
+              "projects/test-app/**/*.html"
+            ]
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "test-app:serve",
+            "browser": "chrome",
+            "configFile": "projects/test-app/cypress.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-app:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false,
+            "configFile": "projects/test-app/cypress.json"
           }
         }
       }
@@ -190,14 +213,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-cookie-backend/tsconfig.lib.json",
-              "projects/ngx-cookie-backend/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-cookie-backend/**/*.ts",
+              "projects/ngx-cookie-backend/**/*.html"
             ]
           }
         }
@@ -222,7 +242,6 @@
             "main": "projects/backend-test-app/src/main.ts",
             "polyfills": "projects/backend-test-app/src/polyfills.ts",
             "tsConfig": "projects/backend-test-app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/backend-test-app/src/favicon.ico",
               "projects/backend-test-app/src/assets"
@@ -230,7 +249,13 @@
             "styles": [
               "projects/backend-test-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -260,7 +285,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -296,24 +322,14 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/backend-test-app/tsconfig.app.json",
-              "projects/backend-test-app/tsconfig.spec.json",
-              "projects/backend-test-app/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "protractorConfig": "projects/backend-test-app/e2e/protractor.conf.js",
-            "devServerTarget": "backend-test-app:serve"
+            "devServerTarget": "backend-test-app:serve",
+            "watch": false,
+            "headless": true,
+            "browser": "chrome",
+            "configFile": "projects/test-app/cypress.json"
           },
           "configurations": {
             "production": {
@@ -326,7 +342,9 @@
           "options": {
             "outputPath": "dist/backend-test-app/server",
             "main": "projects/backend-test-app/server.ts",
-            "tsConfig": "projects/backend-test-app/tsconfig.server.json"
+            "tsConfig": "projects/backend-test-app/tsconfig.server.json",
+            "sourceMap": true,
+            "optimization": false
           },
           "configurations": {
             "production": {
@@ -340,7 +358,8 @@
               "sourceMap": false,
               "optimization": true
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
@@ -367,8 +386,42 @@
           "configurations": {
             "production": {}
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/backend-test-app/**/*.ts",
+              "projects/backend-test-app/**/*.html"
+            ]
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "backend-test-app:serve",
+            "browser": "chrome",
+            "configFile": "projects/backend-test-app/cypress.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "backend-test-app:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false,
+            "configFile": "projects/backend-test-app/cypress.json"
+          }
         }
       }
-    }},
-  "defaultProject": "ngx-cookie"
+    }
+  },
+  "defaultProject": "ngx-cookie",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

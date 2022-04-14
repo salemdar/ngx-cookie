@@ -1,4 +1,3 @@
-import { isPlatformBrowser } from '@angular/common';
 import { APP_ID, Inject, NgModule, PLATFORM_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CookieModule } from 'ngx-cookie';

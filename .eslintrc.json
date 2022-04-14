@@ -1,0 +1,121 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json",
+          "cypress/tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/ng-cli-compat",
+        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "off",
+          {
+            "accessibility": "explicit"
+          }
+        ],
+        "@angular-eslint/no-input-rename": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "ignoreRestSiblings": true,
+            "args": "after-used"
+          }
+        ],
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "arrow-parens": [
+          "off",
+          "always"
+        ],
+        "prefer-arrow/prefer-arrow-functions": [
+          "error",
+          {
+            "allowStandaloneDeclarations": true
+          }
+        ],
+        "dot-notation": "error",
+        "import/order": "error",
+        "indent": [
+          "off",
+          2,
+          {
+            "SwitchCase": 1,
+            "FunctionDeclaration": {
+              "parameters": "first"
+            },
+            "FunctionExpression": {
+              "parameters": "first"
+            },
+            "MemberExpression": 1
+          }
+        ],
+        "no-empty-function": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
+        "no-unused-expressions": "off",
+        "@typescript-eslint/no-unused-expressions": [
+          "error",
+          {
+            "allowTernary": true
+          }
+        ],
+        "no-use-before-define": "off",
+        "quotes": [
+          "error",
+          "single"
+        ],
+        "semi": "error",
+        "no-underscore-dangle": "off",
+        "max-len": [
+          "error",
+          {
+            "code": 140,
+            "ignorePattern": "^import\\s.+\\sfrom\\s.+;$",
+            "ignoreStrings": true,
+            "ignoreTemplateLiterals": true
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

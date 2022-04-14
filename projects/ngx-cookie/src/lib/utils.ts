@@ -1,27 +1,30 @@
 import { CookieDict, CookieOptions } from './cookie.model';
 
-// tslint:disable-next-line:no-any
-export function isNil(obj: any): boolean {
+type EmptyArray = never[] & { length: 0 };
+type EmptyObject = Record<any, never>;
+
+export function isNil(obj: unknown): obj is undefined | null {
   return obj === undefined || obj === null;
 }
 
-// tslint:disable-next-line:no-any
-export function isPresent(obj: any): boolean {
+export function isPresent(obj: unknown): obj is Exclude<typeof obj, undefined | null> {
   return !isNil(obj);
 }
 
-// tslint:disable-next-line:no-any
-export function isString(obj: any): obj is string {
+export function isString(obj: unknown): obj is string {
   return typeof obj === 'string';
 }
 
 // noinspection JSUnusedGlobalSymbols
-// tslint:disable-next-line:no-any
-export function isEmpty(value: any): boolean {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function isEmpty(value: unknown): value is undefined | null | '' | EmptyArray | EmptyObject {
   if (isNil(value)) {
     return true;
   }
   if (value === {}) {
+    return true;
+  }
+  if (isString(value) && value.length === 0) {
     return true;
   }
   if (Array.isArray(value) && value.length === 0) {
@@ -31,7 +34,7 @@ export function isEmpty(value: any): boolean {
     return true;
   }
   // noinspection RedundantIfStatementJS
-  if (Object.keys(value).length === 0 && value.constructor === Object) {
+  if (typeof value === 'object' && Object.keys(value).length === 0 && value.constructor === Object) {
     return true;
   }
   return false;

@@ -1,4 +1,4 @@
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformServer } from '@angular/common';
 import { APP_ID, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CookieDict, CookieService } from 'ngx-cookie';
 
@@ -7,7 +7,7 @@ import { CookieDict, CookieService } from 'ngx-cookie';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  cookieValue!: string;
+  cookieValue?: string;
   objectCookieValue?: object;
   hasCookieTrue!: boolean;
   hasCookieFalse!: boolean;
