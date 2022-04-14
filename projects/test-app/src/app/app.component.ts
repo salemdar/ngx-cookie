@@ -7,7 +7,7 @@ import { CookieService } from 'ngx-cookie';
 })
 export class AppComponent {
   title = 'test-app';
-  cookieValue!: string;
+  cookieValue?: string;
   objectCookieValue?: object;
   hasCookieTrue!: boolean;
   hasCookieFalse!: boolean;

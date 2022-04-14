@@ -7,7 +7,7 @@ import { CookieDict, CookieService } from 'ngx-cookie';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  cookieValue!: string;
+  cookieValue?: string;
   objectCookieValue?: object;
   hasCookieTrue!: boolean;
   hasCookieFalse!: boolean;
