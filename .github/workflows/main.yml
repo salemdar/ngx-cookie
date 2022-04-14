@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+
 jobs:
   build:
 
@@ -35,3 +38,4 @@ jobs:
     - run: yarn build
     - run: yarn test
     - run: yarn e2e
+    - run: bash <(curl -Ls https://coverage.codacy.com/get.sh)
