@@ -3,7 +3,7 @@ import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { CookieOptions as ExpressCookieOptions, Request, Response } from 'express';
 import { CookieOptions, ICookieWriterService, isEmpty, isNil, isString } from 'ngx-cookie';
 
-const COOKIE_SEPARATOR = '; ';
+const COOKIE_SEPARATOR = ';';
 
 @Injectable()
 export class CookieBackendWriterService implements ICookieWriterService {
@@ -18,24 +18,6 @@ export class CookieBackendWriterService implements ICookieWriterService {
     return allCookies.join(COOKIE_SEPARATOR);
   }
 
-  private getNormalizedResponseCookies(): string[] {
-    const responseCookies = (this.response?.getHeader('Set-Cookie') as string | string[]) ?? '';
-    const addedCookies: string[] = Array.isArray(responseCookies) ? responseCookies : [responseCookies];
-    return addedCookies.map(cookieEntry => cookieEntry.split('; ')[0]);
-  }
-
-  private latestUniqueCookieValues(oldCookies: string[], newerCookies: string[]): string[] {
-    const cookiesMap = new Map<string, string>();
-    const oldAndNewCookies: string[] = [...oldCookies, ...newerCookies];
-    oldAndNewCookies
-      .filter(value => value)
-      .map(cookie => cookie.split('='))
-      .forEach(([key, value]) => cookiesMap.set(key, value));
-    const result: string[] = [];
-    cookiesMap.forEach((value, key) => result.push(`${key}=${value}`));
-    return result;
-  }
-
   write(name: string, value: string | undefined, options?: CookieOptions): void {
     if (!isNil(this.response)) {
       this.response.cookie(name, value, this.getOptions(options));
@@ -46,20 +28,32 @@ export class CookieBackendWriterService implements ICookieWriterService {
     if (isEmpty(options)) {
       return {};
     }
-    return {
-      expires: this.getExpires(options?.expires),
-      httpOnly: options?.httpOnly,
-      path: options?.path,
-      domain: options?.domain,
-      secure: options?.secure,
-      sameSite: options?.sameSite
-    };
+    const opts = {...options};
+    if (!isEmpty(options.expires)) {
+      opts.expires = this.getExpires(options.expires);
+    }
+    return opts as ExpressCookieOptions;
   }
 
   private getExpires(expires?: string | Date): Date | undefined {
-    if (isEmpty(expires)) {
-      return undefined;
-    }
     return isString(expires) ? new Date(expires as string) : (expires as Date);
+  }
+
+  private getNormalizedResponseCookies(): string[] {
+    const responseCookies = (this.response?.getHeader('Set-Cookie') as string | string[]) ?? '';
+    const addedCookies: string[] = Array.isArray(responseCookies) ? responseCookies : [responseCookies];
+    return addedCookies.flatMap(cookieEntry => cookieEntry.split(COOKIE_SEPARATOR));
+  }
+
+  private latestUniqueCookieValues(oldCookies: string[], newerCookies: string[]): string[] {
+    const cookiesMap = new Map<string, string>();
+    const oldAndNewCookies: string[] = [...oldCookies, ...newerCookies];
+    oldAndNewCookies
+      .filter(value => !isEmpty(value))
+      .map(cookie => cookie.split('='))
+      .forEach(([key, value]) => cookiesMap.set(key.trim(), value));
+    const result: string[] = [];
+    cookiesMap.forEach((value, key) => result.push(`${key}=${value}`));
+    return result;
   }
 }

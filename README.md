@@ -34,7 +34,7 @@ yarn add ngx-cookie
 
 ### <a name="usage"></a> Usage
 
-`CookieModule` should be registered in the `AppModule` with `forRoot()` static method and with `forChild()` in the child modules.
+`CookieModule` should be registered in an angular module with `withOptions()` static method.
 These methods accept `CookieOptions` objects as well. Leave it blank for the defaults.
 
 ```typescript
@@ -46,7 +46,7 @@ import { CookieModule } from 'ngx-cookie';
 import { AppComponent }  from './app.component';
 
 @NgModule({
-  imports: [ BrowserModule, CookieModule.forRoot() ],
+  imports: [ BrowserModule, CookieModule.withOptions() ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ]
 })
@@ -86,7 +86,7 @@ yarn add ngx-cookie-backend
 # npm install ngx-cookie-backend --save
 ```
 
-Then edit `app.server.module.ts` and add `CookieBackendModule.forRoot()` to imports:
+Then edit `app.server.module.ts` and add `CookieBackendModule.withOptions()` to imports:
 
 ```typescript
 /* app.server.module.ts */
@@ -97,7 +97,7 @@ import { CookieBackendModule } from 'ngx-cookie-backend';
   imports: [
     AppModule,
     ServerModule,
-    CookieBackendModule.forRoot()
+    CookieBackendModule.withOptions()
   ],
   bootstrap: [AppComponent]
 })

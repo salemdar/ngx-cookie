@@ -8,7 +8,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        CookieModule.forRoot()
+        CookieModule.withOptions()
       ],
       declarations: [
         AppComponent

@@ -10,7 +10,7 @@ describe('NgxCookieService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        CookieModule.forRoot()
+        CookieModule.withOptions()
       ]
     });
     service = TestBed.inject(CookieService);

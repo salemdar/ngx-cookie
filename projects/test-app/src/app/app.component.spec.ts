@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [CookieModule.forRoot()],
+      imports: [CookieModule.withOptions()],
       declarations: [AppComponent]
     }).compileComponents();
   }));

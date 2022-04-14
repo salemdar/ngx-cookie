@@ -26,7 +26,8 @@
           "options": {
             "main": "projects/ngx-cookie/src/test.ts",
             "tsConfig": "projects/ngx-cookie/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-cookie/karma.conf.js"
+            "karmaConfig": "projects/ngx-cookie/karma.conf.js",
+            "codeCoverage": true
           }
         },
         "lint": {
@@ -209,7 +210,8 @@
           "options": {
             "main": "projects/ngx-cookie-backend/src/test.ts",
             "tsConfig": "projects/ngx-cookie-backend/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-cookie-backend/karma.conf.js"
+            "karmaConfig": "projects/ngx-cookie-backend/karma.conf.js",
+            "codeCoverage": true
           }
         },
         "lint": {

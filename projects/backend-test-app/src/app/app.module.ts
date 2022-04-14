@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
-    CookieModule.forRoot()
+    CookieModule.withOptions()
   ],
   providers: [],
   bootstrap: [AppComponent]

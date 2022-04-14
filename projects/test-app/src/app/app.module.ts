@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    CookieModule.forRoot()
+    CookieModule.withOptions()
   ],
   providers: [],
   bootstrap: [AppComponent]

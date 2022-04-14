@@ -13,10 +13,11 @@ import { COOKIE_OPTIONS, COOKIE_WRITER } from './tokens';
   providers: [CookieOptionsProvider]
 })
 export class CookieModule {
+
   /**
    * Use this method in your root module to provide the CookieService
    */
-  static forRoot(options: CookieOptions = {}): ModuleWithProviders<CookieModule> {
+  static withOptions(options: CookieOptions = {}): ModuleWithProviders<CookieModule> {
     return {
       ngModule: CookieModule,
       providers: [
@@ -28,9 +29,19 @@ export class CookieModule {
   }
 
   /**
+   * @deprecated use `CookieModule.withOptions()` instead
+   * Use this method in your root module to provide the CookieService
+   */
+  static forRoot(options: CookieOptions = {}): ModuleWithProviders<CookieModule> {
+    return this.withOptions(options);
+  }
+
+  /**
+   * @deprecated use `CookieModule.withOptions()` instead
    * Use this method in your other (non root) modules to import the directive/pipe
    */
   static forChild(options: CookieOptions = {}): ModuleWithProviders<CookieModule> {
-    return CookieModule.forRoot(options);
+    return this.withOptions(options);
   }
+
 }

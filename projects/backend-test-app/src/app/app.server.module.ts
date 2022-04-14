@@ -9,7 +9,7 @@ import { AppModule } from './app.module';
   imports: [
     AppModule,
     ServerModule,
-    CookieBackendModule.forRoot()
+    CookieBackendModule.withOptions()
   ],
   bootstrap: [AppComponent]
 })
