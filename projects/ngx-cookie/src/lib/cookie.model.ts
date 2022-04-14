@@ -43,7 +43,7 @@ export interface ICookieWriterService {
 
 export interface ICookieService {
   hasKey(key: string): boolean;
-  get(key: string): string;
+  get(key: string): string | undefined;
   getObject(key: string): object | undefined;
   getAll(): object;
   put(key: string, value: string, options?: CookieOptions): void;

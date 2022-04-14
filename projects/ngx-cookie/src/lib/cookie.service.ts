@@ -36,7 +36,7 @@ export class CookieService implements ICookieService {
    * @param key Id to use for lookup.
    * @returns Raw cookie value.
    */
-  get(key: string): string {
+  get(key: string): string | undefined {
     return this.getAll()?.[key];
   }
 
