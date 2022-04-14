@@ -1,6 +1,6 @@
 {
   "name": "ngx-cookie",
-  "version": "5.0.2",
+  "version": "6.0.0",
   "description": "Implementation of Angular 1.x $cookies service to Angular",
   "scripts": {
     "ng": "ng",
