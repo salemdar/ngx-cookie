@@ -65,18 +65,18 @@ export function parseCookieString(currentCookieString: string): CookieDict {
   let name: string;
   if (currentCookieString !== lastCookieString) {
     lastCookieString = currentCookieString;
-    cookieArray = lastCookieString.split('; ');
+    cookieArray = lastCookieString.split(';');
     lastCookies = {};
     for (i = 0; i < cookieArray.length; i++) {
       cookie = cookieArray[i];
       index = cookie.indexOf('=');
       if (index > 0) {  // ignore nameless cookies
-        name = safeDecodeURIComponent(cookie.substring(0, index));
+        name = safeDecodeURIComponent((cookie.substring(0, index)).trim());
         // the first value that is seen for a cookie is the most
         // specific one.  values for the same cookie name that
         // follow are for less specific paths.
         if (isNil((lastCookies)[name])) {
-          lastCookies[name] = safeDecodeURIComponent(cookie.substring(index + 1));
+          lastCookies[name] = safeDecodeURIComponent((cookie.substring(index + 1)).trim());
         }
       }
     }
