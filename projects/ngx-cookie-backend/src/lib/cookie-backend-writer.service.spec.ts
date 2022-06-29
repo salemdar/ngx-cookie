@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { Request, Response } from 'express';
-import { COOKIE_WRITER, ICookieWriterService } from 'ngx-cookie';
+import { COOKIE_WRITER, ICookieWriterService, parseCookieString } from 'ngx-cookie';
 
 import { CookieBackendModule } from './cookie-backend.module';
 
@@ -47,6 +47,18 @@ describe('CookieBackendWriterService', () => {
     const allAsString = service.readAllAsString();
     expect(allAsString).toEqual(cookie);
     expect(response.getHeader).toHaveBeenCalledOnceWith('Set-Cookie');
+  });
+
+  it('should parseCookieString with request header', () => {
+    const cookie = 'myKey1=myValue1; myKey2=myValue2';
+    request.headers.cookie = cookie;
+    const allAsString = service.readAllAsString();
+    const parsed = parseCookieString(allAsString)
+    const expected = {
+      'myKey1': 'myValue1',
+      'myKey2': 'myValue2'
+    };
+    expect(parsed).toEqual(expected);
   });
 
   it('should readAllAsString with response header', () => {
