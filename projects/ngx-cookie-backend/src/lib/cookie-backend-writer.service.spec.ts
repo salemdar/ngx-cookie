@@ -53,10 +53,10 @@ describe('CookieBackendWriterService', () => {
     const cookie = 'myKey1=myValue1; myKey2=myValue2';
     request.headers.cookie = cookie;
     const allAsString = service.readAllAsString();
-    const parsed = parseCookieString(allAsString)
+    const parsed = parseCookieString(allAsString);
     const expected = {
-      'myKey1': 'myValue1',
-      'myKey2': 'myValue2'
+      myKey1: 'myValue1',
+      myKey2: 'myValue2'
     };
     expect(parsed).toEqual(expected);
   });

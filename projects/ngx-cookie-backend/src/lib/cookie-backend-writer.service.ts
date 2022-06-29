@@ -1,7 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { CookieOptions as ExpressCookieOptions, Request, Response } from 'express';
-import { CookieOptions, ICookieWriterService, isEmpty, isNil, isString } from 'ngx-cookie';
+import { CookieOptions, ICookieWriterService, isEmpty, isString } from 'ngx-cookie';
 
 const COOKIE_SEPARATOR = ';';
 
@@ -12,16 +12,14 @@ export class CookieBackendWriterService implements ICookieWriterService {
 
   readAllAsString(): string {
     const requestHeadersCookies = this.request?.headers?.cookie;
-    const cookiesFromRequest: string[] = requestHeadersCookies ? requestHeadersCookies.split(COOKIE_SEPARATOR) : [];
+    const cookiesFromRequest: string[] = requestHeadersCookies?.split(COOKIE_SEPARATOR) ?? [];
     const addedCookies: string[] = this.getNormalizedResponseCookies();
     const allCookies = this.latestUniqueCookieValues(cookiesFromRequest, addedCookies);
     return allCookies.join(COOKIE_SEPARATOR);
   }
 
   write(name: string, value: string | undefined, options?: CookieOptions): void {
-    if (!isNil(this.response)) {
-      this.response.cookie(name, value, this.getOptions(options));
-    }
+    this.response?.cookie(name, value, this.getOptions(options));
   }
 
   private getOptions(options?: CookieOptions): ExpressCookieOptions {
