@@ -147,7 +147,7 @@
             "watch": false,
             "headless": true,
             "browser": "chrome",
-            "configFile": "projects/test-app/cypress.json"
+            "configFile": "projects/test-app/cypress.config.ts"
           },
           "configurations": {
             "production": {
@@ -168,8 +168,7 @@
           "builder": "@cypress/schematic:cypress",
           "options": {
             "devServerTarget": "test-app:serve",
-            "browser": "chrome",
-            "configFile": "projects/test-app/cypress.json"
+            "configFile": "projects/test-app/cypress.config.ts"
           },
           "configurations": {
             "production": {
@@ -182,7 +181,7 @@
           "options": {
             "watch": true,
             "headless": false,
-            "configFile": "projects/test-app/cypress.json"
+            "configFile": "projects/test-app/cypress.config.ts"
           }
         }
       }
@@ -331,7 +330,7 @@
             "watch": false,
             "headless": true,
             "browser": "chrome",
-            "configFile": "projects/test-app/cypress.json"
+            "configFile": "projects/backend-test-app/cypress.config.ts"
           },
           "configurations": {
             "production": {
@@ -402,8 +401,7 @@
           "builder": "@cypress/schematic:cypress",
           "options": {
             "devServerTarget": "backend-test-app:serve",
-            "browser": "chrome",
-            "configFile": "projects/backend-test-app/cypress.json"
+            "configFile": "projects/backend-test-app/cypress.config.ts"
           },
           "configurations": {
             "production": {
@@ -416,7 +414,7 @@
           "options": {
             "watch": true,
             "headless": false,
-            "configFile": "projects/backend-test-app/cypress.json"
+            "configFile": "projects/backend-test-app/cypress.config.ts"
           }
         }
       }
