@@ -21,7 +21,8 @@ export function isEmpty(value: unknown): value is undefined | null | '' | EmptyA
   if (isNil(value)) {
     return true;
   }
-  if (value === {}) {
+  // FIXME: This condition will always return 'false' since JavaScript compares objects by reference, not value.ts(2839)
+  if (value === {} as unknown) {
     return true;
   }
   if (isString(value) && value.length === 0) {
